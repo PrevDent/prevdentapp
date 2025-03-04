@@ -6,6 +6,7 @@ import {
     View,
   } from "react-native";
   import Line from "../../Components/common/line"; // Importando seu componente de linha
+import ButtonLogin from "../../Components/common/buttonLogin";
   
   export default function Login() {
     return (
@@ -20,10 +21,8 @@ import {
           <TextInput placeholder="Senha" style={styles.textInput} />
         </View>
   
-        <TouchableOpacity style={styles.button}>
-          <Text style={styles.textButton}>Entrar</Text>
-        </TouchableOpacity>
-  
+        <ButtonLogin text="Entrar"/>
+        
         <View style={styles.naoPossuiContaArea}>
           <Text style={styles.naoPossuiContaText}>
             Não possui conta? 
@@ -104,7 +103,7 @@ import {
       fontSize: 16,
       color: "#000",
       fontWeight: "bold",
-      textDecorationLine: "underline", // Sublinhado
-      marginLeft: 5, // Espaço entre o texto e o link
+      textDecorationLine: "underline", 
+      marginLeft: 5,
     },
   });
