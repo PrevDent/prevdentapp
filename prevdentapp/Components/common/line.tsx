@@ -1,17 +1,29 @@
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View } from "react-native";
 
-const Line = () => {
-  return <View style={styles.line} />;
+interface LineProps {
+  width?: number;
+  color?: string;
+  marginVertical?: number;
+}
+
+const Line = ({
+  width = 320,
+  color = "#000",
+  marginVertical = 30,
+}: LineProps) => {
+  return (
+    <View
+      style={[styles.line, { width, borderBottomColor: color, marginVertical }]}
+    />
+  );
 };
 
 const styles = StyleSheet.create({
-    line: {
-      borderBottomColor: 'red', 
-      borderBottomWidth: 2,
-      marginVertical: 20,
-      width: '80%',
-      alignSelf: 'center',
-    },
-  });
+  line: {
+    borderBottomWidth: 1,
+    marginVertical: 20,
+    alignSelf: "center",
+  },
+});
 
 export default Line;
