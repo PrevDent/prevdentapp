@@ -1,8 +1,9 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
+import GlobalStyle from "../../Components/styles/Global";
 
 export default function Entrar() {
   return (
-    <View style={styles.container}>
+    <View style={GlobalStyle.container}>
       <Text style={styles.titlePage}>Entrar</Text>
 
       <TouchableOpacity style={styles.button}>
@@ -19,18 +20,15 @@ export default function Entrar() {
         <Text style={styles.buttonContinuar}>Continuar sem login</Text>
       </TouchableOpacity>
 
-      <Image source={require('./../../assets/logo-horizontal-azul-sem-fundo.png')} style={styles.image}/>
+      <Image
+        source={require("./../../assets/logo-horizontal-azul-sem-fundo.png")}
+        style={styles.image}
+      />
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
   titlePage: {
     color: "#013EB0",
     fontSize: 40,
@@ -61,7 +59,7 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     color: "#000",
   },
-  image:{
-    marginTop: 50,    
-  }
+  image: {
+    marginTop: 50,
+  },
 });

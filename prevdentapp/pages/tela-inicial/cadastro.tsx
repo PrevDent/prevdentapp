@@ -1,4 +1,5 @@
 import {
+  Image,
   StyleSheet,
   Text,
   TextInput,
@@ -7,27 +8,18 @@ import {
 } from "react-native";
 import Line from "../../Components/common/line";
 import ButtonLogin from "../../Components/common/buttonLogin";
+import InputAreaLogin from "../../Components/common/inputAreaLogin";
+import GlobalStyle from "../../Components/styles/Global";
 
 export default function Login() {
   return (
-    <View style={styles.container}>
+    <View style={GlobalStyle.container}>
       <Text style={styles.titlePage}>Cadastro</Text>
 
-      <View style={styles.inputArea}>
-        <TextInput placeholder="Nome Completo" style={styles.textInput} />
-      </View>
-
-      <View style={styles.inputArea}>
-        <TextInput placeholder="Usuário" style={styles.textInput} />
-      </View>
-
-      <View style={styles.inputArea}>
-        <TextInput placeholder="E-mail" style={styles.textInput} />
-      </View>
-
-      <View style={styles.inputArea}>
-        <TextInput placeholder="Senha" style={styles.textInput} />
-      </View>
+      <InputAreaLogin placeholder="Nome" />
+      <InputAreaLogin placeholder="CPF" />
+      <InputAreaLogin placeholder="E-mail" />
+      <InputAreaLogin placeholder="Senha" />
 
       <ButtonLogin text="Cadastrar" />
 
@@ -39,61 +31,28 @@ export default function Login() {
       </View>
 
       <Line />
+
+      <View style={styles.containerLoginSocial}>
+        <View>
+          <Text style={styles.cadastrarDeOutraForma}>Cadastrar de outra forma</Text>
+        </View>
+
+        <View style={styles.imageContainer}>
+          <Image source={require("../../assets/logo-google.png")} />
+          <Image source={require("../../assets/logo-apple.png")} />
+          <Image source={require("../../assets/logo-facebook.png")} />
+        </View>
+      </View>
     </View>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    alignItems: "center",
-    justifyContent: "center",
-  },
   titlePage: {
     color: "#013EB0",
     fontSize: 40,
     fontWeight: "bold",
     marginVertical: 40,
-  },
-  inputArea: {
-    width: 300,
-    marginVertical: 10,
-    backgroundColor: "white",
-    borderColor: "#e0e0e0",
-    borderWidth: 1,
-    borderRadius: 40,
-    paddingVertical: 3,
-    paddingHorizontal: 20,
-    alignItems: "center",
-    justifyContent: "center",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 10,
-      height: 10,
-    },
-    shadowOpacity: 0.1,
-    shadowRadius: 2,
-    elevation: 1,
-  },
-  textInput: {
-    color: "#CCCCCC",
-    fontSize: 16,
-    fontStyle: "italic",
-  },
-  button: {
-    backgroundColor: "#013EB0",
-    paddingVertical: "2%",
-    width: 100,
-    borderRadius: 50,
-    justifyContent: "center",
-    alignItems: "center",
-    marginVertical: 20,
-  },
-  textButton: {
-    color: "#fff",
-    fontSize: 16,
-    fontWeight: "bold",
   },
   japossuicontaArea: {
     flexDirection: "row",
@@ -111,5 +70,15 @@ const styles = StyleSheet.create({
     fontWeight: "bold",
     textDecorationLine: "underline",
     marginLeft: 5,
+  },
+  containerLoginSocial:{
+    alignItems: "center",
+  },
+  cadastrarDeOutraForma:{
+    marginBottom: 20
+  },
+  imageContainer: {
+    flexDirection: "row",
+    gap: 20,
   },
 });
