@@ -24,11 +24,15 @@ const AppointmentCard = ({
           <Text style={styles.dateText}>{day}</Text>
           <Text style={styles.dateText}>{month}</Text>
         </View>
+      </View>
 
-        <View style={styles.detailsContainer}>
+      <View style={styles.detailsContainer}>
+        <View>
           <Text style={styles.timeText}>{time}</Text>
           <Text style={styles.doctorName}>{doctorName}</Text>
           <Text style={styles.specialty}>{speciality}</Text>
+        </View>
+        <View style={styles.optionsButtonArea}>
           <TouchableOpacity style={styles.optionsButton}>
             <Icon name="more-vert" size={20} color="#FFFFFF" />
           </TouchableOpacity>
@@ -65,6 +69,8 @@ const styles = StyleSheet.create({
   detailsContainer: {
     flex: 1,
     marginLeft: 15,
+    flexDirection: "row",
+
   },
   timeText: {
     color: "#FFFFFF",
@@ -79,9 +85,14 @@ const styles = StyleSheet.create({
     color: "#CCCCCC",
     fontSize: 14,
   },
+  optionsButtonArea:{
+    flex: 1,
+    alignItems: "flex-end",
+  },
   optionsButton: {
     padding: 5,
   },
+  
 });
 
 export default AppointmentCard;
