@@ -18,8 +18,14 @@ export default function App() {
       {/* <InputAreaLogin /> */}
       {/* <Home/> */}
       {/* <SearchBar/> */}
-      {/* <AppointmentCard day="07" month="Out" time="10:00" doctorName="Dr Carlos" speciality="Cardiologista"/> */}
-      <InfoUsuario/>
+      {/* <AppointmentCard
+        day="07"
+        month="Out"
+        time="10:00"
+        doctorName="Dr Carlos"
+        speciality="Cardiologista"
+      /> */}
+      {/* <InfoUsuario/> */}
       {/* <InfoCard
         title="Tipo sanguíneo"
         content="O-"

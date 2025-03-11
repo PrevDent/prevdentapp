@@ -1,13 +1,13 @@
 import React from "react";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
-import Icon from "react-native-vector-icons/MaterialIcons"; // Certifique-se de que os ícones estejam instalados
+import Icon from "react-native-vector-icons/MaterialIcons"; 
 
 interface InfoCardProps {
-  title: string; // Título do card
-  content: string; // Valor a ser exibido
-  icon: string; // Nome do ícone
-  color: string; // Cor de fundo do card
-  iconColor: string; // Cor do ícone
+  title: string; 
+  content: string; 
+  icon: string;
+  color: string; 
+  iconColor: string; 
 }
 
 const InfoCard = ({
