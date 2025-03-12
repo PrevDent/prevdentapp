@@ -2,6 +2,7 @@ import { ScrollView, StyleSheet, Text, View } from "react-native";
 import GlobalStyles from "../../../Components/styles/Global";
 import InfoCard from "../../../Components/common/infoCard";
 import Line from "../../../Components/common/line";
+import RegistryCard from "../../../Components/common/registryCard";
 
 const userinfo = [
   {
@@ -38,11 +39,19 @@ const userinfo = [
   },
 ];
 
+const userregistrys = [
+  { id: 1, title: "Dor na gengiva", icon: "sick", scale: 6 },
+  { id: 2, title: "Dor de dente", icon: "sick", scale: 7 },
+  { id: 3, title: "Mau Hálito", icon: "sick", scale: 4 },
+];
+
 export default function InfoUsuario() {
   return (
     <View style={GlobalStyles.containerHome}>
       <ScrollView>
-        <View style={{...GlobalStyles.tituloPaginaArea, marginHorizontal: "8%"}}>
+        <View
+          style={{ ...GlobalStyles.tituloPaginaArea, marginHorizontal: "8%" }}
+        >
           <Text style={GlobalStyles.tituloPagina}>Informações do usuário</Text>
         </View>
 
@@ -67,8 +76,21 @@ export default function InfoUsuario() {
 
         <Line marginVertical={20} />
 
-        <View style={{...GlobalStyles.tituloPaginaArea, marginHorizontal: "8%"}}>
+        <View
+          style={{ ...GlobalStyles.tituloPaginaArea, marginHorizontal: "8%" }}
+        >
           <Text style={GlobalStyles.tituloPagina}>Últimos Registros</Text>
+        </View>
+
+        <View style={{ alignItems: "center" }}>
+          {userregistrys.map((userregistry) => (
+            <RegistryCard
+              key={userregistry.id}
+              title={userregistry.title}
+              icon={userregistry.icon}
+              scale={userregistry.scale}
+            />
+          ))}
         </View>
       </ScrollView>
     </View>

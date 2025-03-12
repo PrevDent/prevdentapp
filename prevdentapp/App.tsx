@@ -27,7 +27,7 @@ export default function App() {
         doctorName="Dr Carlos"
         speciality="Cardiologista"
       /> */}
-      {/* <InfoUsuario/> */}
+      <InfoUsuario/>
       {/* <InfoCard
         title="Tipo sanguíneo"
         content="O-"
@@ -35,8 +35,9 @@ export default function App() {
         color="#ed7373"
         iconColor="#a00000"
       /> */}
-      <RegistryCard/>
+      {/* <RegistryCard/> */}
       {/* <PainLevelBar painLevel={7}/> */}
+
     </View>
   );
 }

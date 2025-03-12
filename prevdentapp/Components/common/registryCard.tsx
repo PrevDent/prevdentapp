@@ -6,13 +6,13 @@ import PainLevelBar from "./../common/painLevelBar";
 interface InfoCardProps {
   title: string;
   icon: string;
-  scale: string;
+  scale: number;
 }
 
 const InfoCard = ({
-  title = "ze gordola",
-  icon = "assignment",
-  scale = "10",
+  title = "Input text",
+  icon = "input icon",
+  scale = 5,
 }: InfoCardProps) => {
   return (
     <View style={styles.card}>
@@ -20,18 +20,17 @@ const InfoCard = ({
         <View style={styles.contentContainer}>
           <View  style={styles.contentArea}>
             <View style={styles.iconContainer}>
-              <Icon name={icon} size={30} color="#0077d7"/>
+              <Icon name={icon} size={30} color="#fff"/>
             </View>
             <View style={styles.textArea}>
               <Text style={styles.title}>{title}</Text>
-              ;
-              <PainLevelBar painLevel={5}/>
+              <PainLevelBar painLevel={scale}/>
             </View>
           </View>
 
           <TouchableOpacity style={styles.optionsButton}>
             <Icon name="more-vert" size={30} color="#000000" />
-          </TouchableOpacity>
+          </TouchableOpacity> 
         </View>
       </View>
     </View>
@@ -40,13 +39,14 @@ const InfoCard = ({
 
 const styles = StyleSheet.create({
   card: {
-    width: 320,
+    width: 350,
     height: 80,
     borderColor: "#999999",
     borderWidth: 1,
     borderRadius: 20,
     justifyContent: "center",
     padding: 10,
+    marginVertical: 7,
   },
   iconContainer: {
     width: 60,
@@ -72,7 +72,7 @@ const styles = StyleSheet.create({
   },
   textArea: {
     alignItems: "flex-start",
-    gap: 5
+    gap: 12
   },
   title:{
     fontSize: 20,
