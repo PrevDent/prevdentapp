@@ -8,6 +8,8 @@ import SearchBar from "./Components/common/searchBar";
 import AppointmentCard from "./Components/common/appointmentsCard";
 import InfoUsuario from "./pages/home/informacoes-usuario/infoUsuario";
 import InfoCard from "./Components/common/infoCard";
+import RegistryCard from "./Components/common/registryCard";
+import PainLevelBar from "./Components/common/painLevelBar";
 
 export default function App() {
   return (
@@ -33,6 +35,8 @@ export default function App() {
         color="#ed7373"
         iconColor="#a00000"
       /> */}
+      <RegistryCard/>
+      {/* <PainLevelBar painLevel={7}/> */}
     </View>
   );
 }

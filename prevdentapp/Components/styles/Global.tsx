@@ -16,7 +16,7 @@ const styles = StyleSheet.create({
   tituloPagina: {
     fontSize: 20,
     fontWeight: "bold",
-    marginVertical: 20,
+    marginVertical: 10,
   },
   tituloPaginaArea: {
     alignItems: "flex-start",

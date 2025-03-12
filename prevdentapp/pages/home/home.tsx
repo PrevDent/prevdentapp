@@ -33,13 +33,13 @@ export default function Home() {
           />
         </View>
 
-        <Line width={320} marginVertical={7} />
+        {/* <Line width={320} marginVertical={7} /> */}
 
         <View style={GlobalStyle.tituloPaginaArea}>
           <Text style={GlobalStyle.tituloPagina}>Consultas agendadas</Text>
         </View>
 
-        <ScrollView>
+        <ScrollView style={{ marginTop:20 }}>
           {appointments.map(appointment => (
             <AppointmentCard
               key={appointment.id} 

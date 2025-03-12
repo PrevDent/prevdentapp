@@ -1,6 +1,7 @@
-import { StyleSheet, Text, View } from "react-native";
+import { ScrollView, StyleSheet, Text, View } from "react-native";
 import GlobalStyles from "../../../Components/styles/Global";
 import InfoCard from "../../../Components/common/infoCard";
+import Line from "../../../Components/common/line";
 
 const userinfo = [
   {
@@ -10,7 +11,7 @@ const userinfo = [
     icon: "favorite",
     color: "#F8BBD0",
     iconColor: "#D81B60",
-  }, 
+  },
   {
     id: 2,
     title: "Idade",
@@ -18,7 +19,7 @@ const userinfo = [
     icon: "child-care",
     color: "#C8E6C9",
     iconColor: "#43A047",
-  }, 
+  },
   {
     id: 3,
     title: "Altura",
@@ -26,7 +27,7 @@ const userinfo = [
     icon: "height",
     color: "#BBDEFB",
     iconColor: "#1976D2",
-  }, 
+  },
   {
     id: 4,
     title: "Peso",
@@ -34,34 +35,42 @@ const userinfo = [
     icon: "cake",
     color: "#FFF9C4",
     iconColor: "#FBC02D",
-  }, 
+  },
 ];
 
 export default function InfoUsuario() {
   return (
     <View style={GlobalStyles.containerHome}>
-      <View style={GlobalStyles.tituloPaginaArea}>
-        <Text style={GlobalStyles.tituloPagina}>Informações do usuário</Text>
-      </View>
+      <ScrollView>
+        <View style={{...GlobalStyles.tituloPaginaArea, marginHorizontal: "8%"}}>
+          <Text style={GlobalStyles.tituloPagina}>Informações do usuário</Text>
+        </View>
 
-      <View
-        style={{
-          flexDirection: "row",
-          flexWrap: "wrap",
-          justifyContent: "center",
-        }}
-      >
-        {userinfo.map((userinfo) => (
-          <InfoCard
-            key={userinfo.id}
-            title={userinfo.title}
-            content={userinfo.value}
-            icon={userinfo.icon}
-            color={userinfo.color}
-            iconColor={userinfo.iconColor}
-          />
-        ))}
-      </View>
+        <View
+          style={{
+            flexDirection: "row",
+            flexWrap: "wrap",
+            justifyContent: "center",
+          }}
+        >
+          {userinfo.map((userinfo) => (
+            <InfoCard
+              key={userinfo.id}
+              title={userinfo.title}
+              content={userinfo.value}
+              icon={userinfo.icon}
+              color={userinfo.color}
+              iconColor={userinfo.iconColor}
+            />
+          ))}
+        </View>
+
+        <Line marginVertical={20} />
+
+        <View style={{...GlobalStyles.tituloPaginaArea, marginHorizontal: "8%"}}>
+          <Text style={GlobalStyles.tituloPagina}>Últimos Registros</Text>
+        </View>
+      </ScrollView>
     </View>
   );
 }
