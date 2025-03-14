@@ -54,7 +54,6 @@ export default function InfoUsuario() {
         >
           <Text style={GlobalStyles.tituloPagina}>Informações do usuário</Text>
         </View>
-
         <View
           style={{
             flexDirection: "row",
@@ -73,15 +72,12 @@ export default function InfoUsuario() {
             />
           ))}
         </View>
-
         <Line marginVertical={20} />
-
         <View
           style={{ ...GlobalStyles.tituloPaginaArea, marginHorizontal: "8%" }}
         >
           <Text style={GlobalStyles.tituloPagina}>Últimos Registros</Text>
         </View>
-
         <View style={{ alignItems: "center" }}>
           {userregistrys.map((userregistry) => (
             <RegistryCard

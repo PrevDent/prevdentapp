@@ -10,15 +10,23 @@ import InfoUsuario from "./pages/home/informacoes-usuario/infoUsuario";
 import InfoCard from "./Components/common/infoCard";
 import RegistryCard from "./Components/common/registryCard";
 import PainLevelBar from "./Components/common/painLevelBar";
+import NewRegistryScreen from "./pages/home/inserir-registro/newRegistryScreen";
+import InputRegistry from "./Components/common/inputRegistry";
+import ButtonAddRegistry from "./Components/common/buttonAddRegistry";
 
 export default function App() {
   return (
     <View style={styles.container}>
+      {/* SCREENS */}
       {/* <Cadastro /> */}
       {/* <Login/> */}
+      {/* <Home/> */}
+      {/* <InfoUsuario /> */}
+      <NewRegistryScreen />
+
+      {/* COMPONENTS */}
       {/* <ButtonLogin /> */}
       {/* <InputAreaLogin /> */}
-      {/* <Home/> */}
       {/* <SearchBar/> */}
       {/* <AppointmentCard
         day="07"
@@ -27,7 +35,6 @@ export default function App() {
         doctorName="Dr Carlos"
         speciality="Cardiologista"
       /> */}
-      <InfoUsuario/>
       {/* <InfoCard
         title="Tipo sanguíneo"
         content="O-"
@@ -37,6 +44,8 @@ export default function App() {
       /> */}
       {/* <RegistryCard/> */}
       {/* <PainLevelBar painLevel={7}/> */}
+      {/* <InputRegistry/> */}
+      {/* <ButtonAddRegistry/> */}
 
     </View>
   );
