@@ -1,10 +1,19 @@
-import { StyleSheet, Text, TouchableOpacity, View, Image } from "react-native";
-import Line from "../../Components/common/line"; // Importando seu componente de linha
+import { StyleSheet, Text, TouchableOpacity, View, Image, ScrollView } from "react-native";
+import Line from "../../Components/common/line"; 
 import ButtonLogin from "../../Components/common/buttonLogin";
 import InputAreaLogin from "../../Components/common/inputAreaLogin";
 import GlobalStyle from "../../Components/styles/Global";
+import { StackNavigationProp } from '@react-navigation/stack';
+import { RootStackParamList } from "../../Routes/RootStack";
 
-export default function Login() {
+// Definindo o tipo de navegação
+type LoginScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Login'>;
+
+interface Props {
+  navigation: LoginScreenNavigationProp;
+}
+
+export default function LoginScreen({ navigation }: Props) { 
   return (
     <View style={GlobalStyle.container}>
       <Text style={styles.titlePage}>Login</Text>
@@ -13,11 +22,11 @@ export default function Login() {
         <InputAreaLogin placeholder="Senha" />
       </View>
 
-      <ButtonLogin text="Entrar" />
+      <ButtonLogin text="Entrar" onPress={() => navigation.navigate('Home')} />
 
       <View style={styles.naoPossuiContaArea}>
         <Text style={styles.naoPossuiContaText}>Não possui conta?</Text>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('Cadastro')}>
           <Text style={styles.cadastreseText}>Cadastre-se</Text>
         </TouchableOpacity>
       </View>

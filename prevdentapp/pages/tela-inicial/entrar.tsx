@@ -1,7 +1,7 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import GlobalStyle from "../../Components/styles/Global";
 
-export default function Entrar() {
+export default function EntrarScreen() {
   return (
     <View style={GlobalStyle.container}>
       <Text style={styles.titlePage}>Entrar</Text>

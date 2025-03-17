@@ -1,17 +1,17 @@
-import {
-  Image,
-  StyleSheet,
-  Text,
-  TextInput,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import Line from "../../Components/common/line";
 import ButtonLogin from "../../Components/common/buttonLogin";
 import InputAreaLogin from "../../Components/common/inputAreaLogin";
 import GlobalStyle from "../../Components/styles/Global";
+import { RootStackParamList } from "../../Routes/RootStack";
+import { StackNavigationProp } from "@react-navigation/stack";
 
-export default function Login() {
+type CadastroScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Cadastro'>;
+
+interface Props {
+  navigation: CadastroScreenNavigationProp;
+}
+export default function CadastroScreen({ navigation }: Props) { 
   return (
     <View style={GlobalStyle.container}>
       <Text style={styles.titlePage}>Cadastro</Text>
@@ -21,11 +21,11 @@ export default function Login() {
       <InputAreaLogin placeholder="E-mail" />
       <InputAreaLogin placeholder="Senha" />
 
-      <ButtonLogin text="Cadastrar" />
+      <ButtonLogin text="Cadastrar" onPress={() => navigation.navigate('Home')} />
 
       <View style={styles.japossuicontaArea}>
         <Text style={styles.japossuicontaText}>Já possui conta?</Text>
-        <TouchableOpacity>
+        <TouchableOpacity onPress={() => navigation.navigate('Login')}>
           <Text style={styles.entreaquiText}>Entre aqui</Text>
         </TouchableOpacity>
       </View>
@@ -34,7 +34,9 @@ export default function Login() {
 
       <View style={styles.containerLoginSocial}>
         <View>
-          <Text style={styles.cadastrarDeOutraForma}>Cadastrar de outra forma</Text>
+          <Text style={styles.cadastrarDeOutraForma}>
+            Cadastrar de outra forma
+          </Text>
         </View>
 
         <View style={styles.imageContainer}>
@@ -71,11 +73,11 @@ const styles = StyleSheet.create({
     textDecorationLine: "underline",
     marginLeft: 5,
   },
-  containerLoginSocial:{
+  containerLoginSocial: {
     alignItems: "center",
   },
-  cadastrarDeOutraForma:{
-    marginBottom: 20
+  cadastrarDeOutraForma: {
+    marginBottom: 20,
   },
   imageContainer: {
     flexDirection: "row",

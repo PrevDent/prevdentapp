@@ -3,7 +3,6 @@ import { View, Text, StyleSheet, Image, ScrollView } from "react-native";
 import GlobalStyle from "../../Components/styles/Global";
 import SearchBar from "../../Components/common/searchBar";
 import AppointmentCard from "../../Components/common/appointmentsCard";
-import Line from "../../Components/common/line";
 
 
 const appointments = [
@@ -13,7 +12,7 @@ const appointments = [
   { id: 4, day: "20", month: "Out", time: "17:30", doctorName: "Dr. Vagabuno Ribeiro", speciality: "Putinha" },
 ];
 
-export default function Home() {
+export default function HomeScreen() {
   return (
     <View style={GlobalStyle.containerHome}>
       <View style={styles.header}>

@@ -6,10 +6,10 @@ import {
   TouchableOpacity,
   StyleSheet,
 } from "react-native";
-import GlobalStyle from "../../../Components/styles/Global";
+import GlobalStyle from "../../Components/styles/Global";
 import Icon from "react-native-vector-icons/MaterialIcons";
-import InputRegistry from "../../../Components/common/inputRegistry";
-import ButtonAddRegistry from "../../../Components/common/buttonAddRegistry";
+import InputRegistry from "../../Components/common/inputRegistry";
+import ButtonAddRegistry from "../../Components/common/buttonAddRegistry";
 
 export default function NewRegistryScreen() {
   {

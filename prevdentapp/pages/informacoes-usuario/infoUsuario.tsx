@@ -1,8 +1,8 @@
 import { ScrollView, StyleSheet, Text, View } from "react-native";
-import GlobalStyles from "../../../Components/styles/Global";
-import InfoCard from "../../../Components/common/infoCard";
-import Line from "../../../Components/common/line";
-import RegistryCard from "../../../Components/common/registryCard";
+import GlobalStyles from "../../Components/styles/Global";
+import InfoCard from "../../Components/common/infoCard";
+import Line from "../../Components/common/line";
+import RegistryCard from "../../Components/common/registryCard";
 
 const userinfo = [
   {
@@ -45,7 +45,7 @@ const userregistrys = [
   { id: 3, title: "Mau Hálito", icon: "sick", scale: 4 },
 ];
 
-export default function InfoUsuario() {
+export default function InfoUsuarioScreen() {
   return (
     <View style={GlobalStyles.containerHome}>
       <ScrollView>
