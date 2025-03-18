@@ -3,29 +3,55 @@ import { View, Text, StyleSheet, Image, ScrollView } from "react-native";
 import GlobalStyle from "../../Components/styles/Global";
 import SearchBar from "../../Components/common/searchBar";
 import AppointmentCard from "../../Components/common/appointmentsCard";
-import Line from "../../Components/common/line";
-
 
 const appointments = [
-  { id: 1, day: "10", month: "Nov", time: "10:00", doctorName: "Dr. Vitor Santos", speciality: "Cardiologista" },
-  { id: 2, day: "12", month: "Nov", time: "11:00", doctorName: "Dr. Ana Silva", speciality: "Pediatra" },
-  { id: 3, day: "15", month: "Nov", time: "09:30", doctorName: "Dr. José Ribeiro", speciality: "Dentista" },
-  { id: 4, day: "20", month: "Out", time: "17:30", doctorName: "Dr. Vagabuno Ribeiro", speciality: "Putinha" },
+  {
+    id: 1,
+    day: "10",
+    month: "Nov",
+    time: "10:00",
+    doctorName: "Dr. Vitor Santos",
+    speciality: "Cardiologista",
+  },
+  {
+    id: 2,
+    day: "12",
+    month: "Nov",
+    time: "11:00",
+    doctorName: "Dr. Ana Silva",
+    speciality: "Pediatra",
+  },
+  {
+    id: 3,
+    day: "15",
+    month: "Nov",
+    time: "09:30",
+    doctorName: "Dr. José Ribeiro",
+    speciality: "Dentista",
+  },
+  {
+    id: 4,
+    day: "20",
+    month: "Out",
+    time: "17:30",
+    doctorName: "Dr. Vagabuno Ribeiro",
+    speciality: "Putinha",
+  },
 ];
 
-export default function Home() {
+export default function HomeScreen() {
   return (
-    <View style={GlobalStyle.containerHome}>
-      <View style={styles.header}>
-        <View style={styles.olaNome}>
-          <Text style={styles.textOla}>Olá,</Text>
-          <Text style={styles.textOlaNome}>Vitor Santos</Text>
+    <ScrollView>
+      <View style={GlobalStyle.containerHome}>
+        <View style={styles.header}>
+          <View style={styles.olaNome}>
+            <Text style={styles.textOla}>Olá,</Text>
+            <Text style={styles.textOlaNome}>Vitor Santos</Text>
+          </View>
+          <Image source={require("../../assets/vitor-perfil.png")} />
         </View>
-        <Image source={require("../../assets/vitor-perfil.png")} />
-      </View>
 
-      <SearchBar />
-      <ScrollView>
+        <SearchBar />
         <View>
           <Image
             style={styles.bannerContainer}
@@ -39,10 +65,10 @@ export default function Home() {
           <Text style={GlobalStyle.tituloPagina}>Consultas agendadas</Text>
         </View>
 
-        <ScrollView style={{ marginTop:20 }}>
-          {appointments.map(appointment => (
+        <ScrollView style={{ marginTop: 20 }}>
+          {appointments.map((appointment) => (
             <AppointmentCard
-              key={appointment.id} 
+              key={appointment.id}
               day={appointment.day}
               month={appointment.month}
               time={appointment.time}
@@ -51,8 +77,8 @@ export default function Home() {
             />
           ))}
         </ScrollView>
-      </ScrollView>
-    </View>
+      </View>
+    </ScrollView>
   );
 }
 
@@ -79,5 +105,5 @@ const styles = StyleSheet.create({
     height: 200,
     marginVertical: 20,
     borderRadius: 20,
-  }, 
+  },
 });
