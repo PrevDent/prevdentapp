@@ -3,6 +3,7 @@ import GlobalStyles from "../../Components/styles/Global";
 import InfoCard from "../../Components/common/infoCard";
 import Line from "../../Components/common/line";
 import RegistryCard from "../../Components/common/registryCard";
+import BackArrow from "../../Components/common/backArrowComponent";
 
 const userinfo = [
   {
@@ -48,6 +49,7 @@ const userregistrys = [
 export default function InfoUsuarioScreen() {
   return (
     <View style={GlobalStyles.containerHome}>
+      <BackArrow />
       <ScrollView>
         <View
           style={{ ...GlobalStyles.tituloPaginaArea, marginHorizontal: "8%" }}

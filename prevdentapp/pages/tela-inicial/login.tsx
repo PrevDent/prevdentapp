@@ -4,7 +4,7 @@ import ButtonLogin from "../../Components/common/buttonLogin";
 import InputAreaLogin from "../../Components/common/inputAreaLogin";
 import GlobalStyle from "../../Components/styles/Global";
 import { StackNavigationProp } from '@react-navigation/stack';
-import { RootStackParamList } from "../../Routes/RootStack";
+import { RootStackParamList } from "../../Routes/RootStackNavigation";
 
 // Definindo o tipo de navegação
 type LoginScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Login'>;
@@ -22,7 +22,7 @@ export default function LoginScreen({ navigation }: Props) {
         <InputAreaLogin placeholder="Senha" />
       </View>
 
-      <ButtonLogin text="Entrar" onPress={() => navigation.navigate('Home')} />
+      <ButtonLogin text="Entrar" onPress={() => navigation.navigate('TabNavigation')} />
 
       <View style={styles.naoPossuiContaArea}>
         <Text style={styles.naoPossuiContaText}>Não possui conta?</Text>

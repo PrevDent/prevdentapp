@@ -3,7 +3,7 @@ import Line from "../../Components/common/line";
 import ButtonLogin from "../../Components/common/buttonLogin";
 import InputAreaLogin from "../../Components/common/inputAreaLogin";
 import GlobalStyle from "../../Components/styles/Global";
-import { RootStackParamList } from "../../Routes/RootStack";
+import { RootStackParamList } from "../../Routes/RootStackNavigation";
 import { StackNavigationProp } from "@react-navigation/stack";
 
 type CadastroScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Cadastro'>;
