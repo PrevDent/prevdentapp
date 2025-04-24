@@ -1,4 +1,4 @@
-import { View, StyleSheet, TouchableOpacity, Text } from "react-native";
+import { StyleSheet, TouchableOpacity, Text } from "react-native";
 
 interface buttonAddRegistryProps {
   placeholder?: string;
@@ -8,14 +8,14 @@ interface buttonAddRegistryProps {
 }
 
 const buttonAddRegistry = ({
-  placeholder = "",
+  placeholder = "Adicionar Registro",
   color = "#f6f6f6",
   height = 70,
   top = 0,
 }: buttonAddRegistryProps) => {
   return (
     <TouchableOpacity style={styles.container}>
-      <Text style={styles.textButton}>Adicionar Registro</Text>
+      <Text style={styles.textButton}>{placeholder}</Text>
     </TouchableOpacity>
   );
 };

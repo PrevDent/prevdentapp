@@ -8,6 +8,8 @@ interface AppointmentCardProps {
   time: string;
   doctorName: string;
   speciality: string;
+  onPress: () => void; 
+  navigateScreen?: () => void// Adicionando a propriedade onPress
 }
 
 const AppointmentCard = ({
@@ -16,9 +18,11 @@ const AppointmentCard = ({
   time,
   doctorName,
   speciality,
+  onPress, 
+  navigateScreen
 }: AppointmentCardProps) => {
   return (
-    <View style={styles.card}>
+    <TouchableOpacity onPress={onPress}style={styles.card}>
       <View>
         <View style={styles.dateContainer}>
           <Text style={styles.dateText}>{day}</Text>
@@ -33,12 +37,12 @@ const AppointmentCard = ({
           <Text style={styles.specialty}>{speciality}</Text>
         </View>
         <View style={styles.optionsButtonArea}>
-          <TouchableOpacity style={styles.optionsButton}>
+          <TouchableOpacity style={styles.optionsButton} onPress={onPress}>
             <Icon name="more-vert" size={20} color="#FFFFFF" />
           </TouchableOpacity>
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
@@ -70,7 +74,6 @@ const styles = StyleSheet.create({
     flex: 1,
     marginLeft: 15,
     flexDirection: "row",
-
   },
   timeText: {
     color: "#FFFFFF",
@@ -85,14 +88,13 @@ const styles = StyleSheet.create({
     color: "#CCCCCC",
     fontSize: 14,
   },
-  optionsButtonArea:{
+  optionsButtonArea: {
     flex: 1,
     alignItems: "flex-end",
   },
   optionsButton: {
     padding: 5,
   },
-  
 });
 
 export default AppointmentCard;

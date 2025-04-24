@@ -2,9 +2,10 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { Ionicons } from "@expo/vector-icons"; // Assumindo que você está usando Expo
 
 import HomeScreen from "../pages/home/home";
-import ProfileScreen from "../pages/perfil/profileScreen";
+import ProfileScreen from "../pages/usuario/perfil/profileScreen";
 import NewRegistryScreen from "../pages/inserir-registro/newRegistryScreen";
-import InfoUsuarioScreen from "../pages/informacoes-usuario/infoUsuario";
+import InfoUsuarioScreen from "../pages/usuario/informacoes-usuario/infoUsuario";
+import ActivityAreaScreen from "../pages/info/areas-atuacao/activityAreaScreen";
 
 const Tab = createBottomTabNavigator();
 
@@ -19,7 +20,7 @@ export default function TabNavigator() {
             iconName = focused ? "home" : "home-outline";
           } else if (route.name === "Perfil") {
             iconName = focused ? "person" : "person-outline";
-          } else if (route.name === "Info usuario") {
+          } else if (route.name === "Informações") {
             iconName = focused ? "clipboard" : "clipboard-outline";
           } else if (route.name === "Novo registro") {
             iconName = focused ? "add-circle" : "add-circle-outline";
@@ -37,8 +38,8 @@ export default function TabNavigator() {
         options={{ headerShown: false }}
       />
       <Tab.Screen
-        name="Info usuario"
-        component={InfoUsuarioScreen}
+        name="Informações"
+        component={ActivityAreaScreen}
         options={{ headerShown: false }}
       />
       <Tab.Screen

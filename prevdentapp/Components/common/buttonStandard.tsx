@@ -1,6 +1,6 @@
 import { StyleSheet, Text, TouchableOpacity } from "react-native";
 
-interface ButtonLoginProps {
+interface ButtonStandardProps {
   text: string;
   color?: string;
   width?: number;
@@ -8,13 +8,13 @@ interface ButtonLoginProps {
   onPress?: () => void;
 }
 
-const ButtonLogin = ({
+const ButtonStandard = ({
   text = "buttonText",
   color = "#013EB0",
   width = 150,
   marginVertical = 20,
   onPress,
-}: ButtonLoginProps) => {
+}: ButtonStandardProps) => {
 
   return (
     <TouchableOpacity
@@ -41,4 +41,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ButtonLogin;
+export default ButtonStandard;

@@ -1,6 +1,6 @@
 import { Image, StyleSheet, Text, TouchableOpacity, View } from "react-native";
 import Line from "../../Components/common/line";
-import ButtonLogin from "../../Components/common/buttonLogin";
+import ButtonStandard from "../../Components/common/buttonStandard";
 import InputAreaLogin from "../../Components/common/inputAreaLogin";
 import GlobalStyle from "../../Components/styles/Global";
 import { RootStackParamList } from "../../Routes/RootStackNavigation";
@@ -21,7 +21,7 @@ export default function CadastroScreen({ navigation }: Props) {
       <InputAreaLogin placeholder="E-mail" />
       <InputAreaLogin placeholder="Senha" />
 
-      <ButtonLogin text="Cadastrar" onPress={() => navigation.navigate('Home')} />
+      <ButtonStandard text="Cadastrar" onPress={() => navigation.navigate('Home')} />
 
       <View style={styles.japossuicontaArea}>
         <Text style={styles.japossuicontaText}>Já possui conta?</Text>
