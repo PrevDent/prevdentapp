@@ -2,10 +2,10 @@
 import React from "react";
 import { View, Text, Image, StyleSheet, ScrollView } from "react-native";
 import { useNavigation } from "@react-navigation/native";
-import MenuItemComponent from "../../Components/common/infoProfileCard";
-import StatsProfileCard from "../../Components/common/statsProfile";
-import BackArrow from "../../Components/common/backArrowComponent";
-import GlobalStyles from "../../Components/styles/Global";
+import MenuItemComponent from "../../../Components/common/infoProfileCard";
+import StatsProfileCard from "../../../Components/common/statsProfile";
+import BackArrow from "../../../Components/common/backArrowComponent";
+import GlobalStyles from "../../../Components/styles/Global";
 
 type MenuItem = {
   title: string;
@@ -17,7 +17,7 @@ function ProfileScreen() {
   const navigation = useNavigation();
 
   const menuItems: MenuItem[] = [
-    { title: "Informações pessoais", screen: "UnderConstructionScreen" },
+    { title: "Informações pessoais", screen: "InfoUsuario" },
     { title: "Meus Agendamentos", screen: "UnderConstructionScreen" },
     { title: "Consultas realizadas", screen: "UnderConstructionScreen" },
     { title: "Notificações", screen: "UnderConstructionScreen" },
@@ -32,7 +32,7 @@ function ProfileScreen() {
       <ScrollView>
         <View style={styles.header}>
           <Image
-            source={require("./../../assets/profile-picture.png")}
+            source={require("./../../../assets/profile-picture.png")}
             style={styles.profilePicture}
           />
           <Text style={styles.name}>Vitor Santos</Text>

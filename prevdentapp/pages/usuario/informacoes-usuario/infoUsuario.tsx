@@ -1,9 +1,9 @@
 import { ScrollView, StyleSheet, Text, View } from "react-native";
-import GlobalStyles from "../../Components/styles/Global";
-import InfoCard from "../../Components/common/infoCard";
-import Line from "../../Components/common/line";
-import RegistryCard from "../../Components/common/registryCard";
-import BackArrow from "../../Components/common/backArrowComponent";
+import GlobalStyles from "../../../Components/styles/Global";
+import InfoCard from "../../../Components/common/infoCard";
+import Line from "../../../Components/common/line";
+import RegistryCard from "../../../Components/common/registryCard";
+import BackArrow from "../../../Components/common/backArrowComponent";
 
 const userinfo = [
   {

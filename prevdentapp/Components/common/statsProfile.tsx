@@ -1,6 +1,5 @@
 import { View, Text, StyleSheet } from 'react-native'
 
-
 interface StatsProfileProps {
     content: string;
     subTitle: string;
