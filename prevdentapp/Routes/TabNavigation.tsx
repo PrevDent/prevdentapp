@@ -4,8 +4,7 @@ import { Ionicons } from "@expo/vector-icons"; // Assumindo que você está usan
 import HomeScreen from "../pages/home/home";
 import ProfileScreen from "../pages/usuario/perfil/profileScreen";
 import NewRegistryScreen from "../pages/inserir-registro/newRegistryScreen";
-import InfoUsuarioScreen from "../pages/usuario/informacoes-usuario/infoUsuario";
-import ActivityAreaScreen from "../pages/info/areas-atuacao/activityAreaScreen";
+import ActivityAreaScreen from "../pages/info/areas-atuacao/ActivityAreaScreen";
 
 const Tab = createBottomTabNavigator();
 
