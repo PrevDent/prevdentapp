@@ -4,10 +4,10 @@ import GlobalStyle from "../../Components/styles/Global";
 import SearchBar from "../../Components/common/searchBar";
 import AppointmentCard from "../../Components/common/appointmentsCard";
 import DetailsModal from "../../Components/common/home/modal-details";
-import { Appointment } from "../../model/appointment.interface";
+import { AppointmentInterface } from "../../model/appointment.interface";
 import { useNavigation } from "@react-navigation/native";
 
-const appointments: Appointment[] = [
+const appointments: AppointmentInterface[] = [
   {
     id: 1,
     day: "10",
@@ -33,7 +33,7 @@ const appointments: Appointment[] = [
     time: "09:30",
     doctorName: "Dr. José Ribeiro",
     speciality: "Dentista",
-    description: "Consulta para limpeza dental.",
+    description: "aniversairo bala do luisao, sair da aula para comer e beber algo no shopping seloco cachueira",
   },
   {
     id: 4,
@@ -48,9 +48,9 @@ const appointments: Appointment[] = [
 
 export default function HomeScreen() {
   const [modalVisible, setModalVisible] = useState(false);
-  const [selectedAppointment, setSelectedAppointment] = useState<Appointment | null>(null);
+  const [selectedAppointment, setSelectedAppointment] = useState<AppointmentInterface | null>(null);
 
-  const openModal = (appointment: Appointment) => {
+  const openModal = (appointment: AppointmentInterface) => {
     setSelectedAppointment(appointment);
     setModalVisible(true);
   };
