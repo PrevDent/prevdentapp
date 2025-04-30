@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet } from "react-native";
+import { View, Text, StyleSheet, TouchableOpacity } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 
 interface ActivityCardProps {
@@ -6,11 +6,12 @@ interface ActivityCardProps {
   title: string;
   description: string;
   iconBackgroundColor: string;
+  onPress?: () => void;
 }
 
-const ActivityCard = ({ icon, title, description, iconBackgroundColor }: ActivityCardProps) => {
+const ActivityCard = ({ icon, title, description, iconBackgroundColor, onPress}: ActivityCardProps) => {
   return (
-    <View style={styles.card}>
+    <TouchableOpacity style={styles.card} onPress={onPress}>
       <View style={[styles.iconContainer, { backgroundColor: iconBackgroundColor }]}>
         <Icon name={icon} size={30} color="#FFFFFF" />
       </View>
@@ -18,7 +19,7 @@ const ActivityCard = ({ icon, title, description, iconBackgroundColor }: Activit
         <Text style={styles.title}>{title}</Text>
         <Text style={styles.description}>{description}</Text>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 

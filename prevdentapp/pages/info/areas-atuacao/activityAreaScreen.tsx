@@ -1,55 +1,19 @@
 import React from "react";
-import { View, Text, StyleSheet, ScrollView } from "react-native";
+import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from "react-native";
 import GlobalStyles from "../../../Components/styles/Global";
 import BackArrow from "../../../Components/common/backArrowComponent";
 import ActivityCard from "../../../Components/common/activityAreaCard";
-
-const activityData = [
-  {
-    icon: "heart-outline",
-    title: "Ortodontia",
-    description: "Dúvidas, informações e consultas.",
-    iconBackgroundColor: "#c95238",
-  },
-  {
-    icon: "leaf-outline",
-    title: "Endodontia",
-    description: "Dúvidas, informações e consultas.",
-    iconBackgroundColor: "#43bb59",
-  },
-  {
-    icon: "brain-outline",
-    title: "Periodontia",
-    description: "Dúvidas, informações e consultas.",
-    iconBackgroundColor: "#A2A2A2",
-  },
-  {
-    icon: "person-outline",
-    title: "Odontopediatria",
-    description: "Dúvidas, informações e consultas.",
-    iconBackgroundColor: "#3182bc",
-  },
-  {
-    icon: "medkit-outline",
-    title: "Prótese Dentária",
-    description: "Dúvidas, informações e consultas.",
-    iconBackgroundColor: "#dcb533",
-  },
-  {
-    icon: "ear-outline",
-    title: "Cirurgia Oral e Maxilofacial",
-    description: "Dúvidas, informações e consultas.",
-    iconBackgroundColor: "#b9d486",
-  },
-  {
-    icon: "bicycle-outline",
-    title: "Odontologia Geriátrica",
-    description: "Dúvidas, informações e consultas.",
-    iconBackgroundColor: "#b42b51",
-  },
-];
+import { useNavigation } from '@react-navigation/native';
+import { activityData } from "../../../data/activityData"; // Certifique-se de que este caminho está correto
+import { ActivityDataInterface } from "../../../model/activityData.interface";
 
 function ActivityAreaScreen() {
+  const navigation = useNavigation();
+
+  const handleNavigate = (area: ActivityDataInterface) => {
+    navigation.navigate('AreaDetailsScreen', area);
+  };
+
   return (
     <ScrollView>
       <View style={GlobalStyles.containerHome}>
@@ -59,13 +23,15 @@ function ActivityAreaScreen() {
             <Text style={GlobalStyles.tituloPagina}>Informações</Text>
           </View>
           {activityData.map((activity, index) => (
-            <ActivityCard
-              key={index}
-              icon={activity.icon}
-              title={activity.title}
-              description={activity.description}
-              iconBackgroundColor={activity.iconBackgroundColor}
-            />
+            <TouchableOpacity key={index}>
+              <ActivityCard
+                icon={activity.icon}
+                title={activity.title}
+                description={activity.description}
+                iconBackgroundColor={activity.iconBackgroundColor}
+                onPress={() => handleNavigate(activity)}
+              />
+            </TouchableOpacity>
           ))}
         </View>
       </View>

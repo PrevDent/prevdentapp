@@ -7,8 +7,11 @@ import NewRegistryScreen from "../pages/inserir-registro/newRegistryScreen";
 import TabNavigator from "./TabNavigation";
 import ProfileScreen from "../pages/usuario/perfil/profileScreen";
 import UnderConstructionScreen from "../pages/construcao/buildingScreen";
-import ActivityAreaScreen from "../pages/info/areas-atuacao/activityAreaScreen";
-import InfoConsultaScreen from "../pages/consulta/infoConsulta";
+import ActivityAreaScreen from "../pages/info/areas-atuacao/ActivityAreaScreen";
+import InfoConsultaScreen from "../pages/info/infoConsulta";
+import AreaDetailsScreen from "../pages/info/areas-atuacao/areaDetailsScreen"
+import { AppointmentInterface } from "../model/appointment.interface";
+import { ActivityDataInterface } from "../model/activityData.interface";
 
 export type RootStackParamList = {
   Login: undefined;
@@ -20,15 +23,8 @@ export type RootStackParamList = {
   ProfileScreen: undefined;
   UnderConstructionScreen: undefined;
   ActivityAreaScreen: undefined;
-  InfoConsultaScreen: {
-    id: number;
-    day: string;
-    month: string;
-    time: string;
-    doctorName: string;
-    speciality: string;
-    description: string;
-  };
+  InfoConsultaScreen: AppointmentInterface;
+  AreaDetailsScreen: ActivityDataInterface
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -49,7 +45,7 @@ export function RootStackNavigation() {
       <Stack.Screen name="UnderConstructionScreen" component={UnderConstructionScreen} />
       <Stack.Screen name="ActivityAreaScreen" component={ActivityAreaScreen} />
       <Stack.Screen name="InfoConsultaScreen" component={InfoConsultaScreen} />
-      
+      <Stack.Screen name="AreaDetailsScreen" component={AreaDetailsScreen} />
       
     </Stack.Navigator>
   );
