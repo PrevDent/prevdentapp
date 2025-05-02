@@ -18,6 +18,7 @@ export default function CadastroScreen({ navigation }: Props) {
 
       <InputAreaLogin placeholder="Nome" />
       <InputAreaLogin placeholder="CPF" />
+      <InputAreaLogin placeholder="Data de nascimento" />
       <InputAreaLogin placeholder="E-mail" />
       <InputAreaLogin placeholder="Senha" />
 
