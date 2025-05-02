@@ -2,7 +2,7 @@ import { ActivityDataInterface } from "../model/activityData.interface";
 
 export const activityData: ActivityDataInterface[] = [
   {
-    icon: "heart-outline",
+    icon: "happy-outline",
     title: "Ortodontia",
     description: "Dúvidas, informações e consultas.",
     iconBackgroundColor: "#c95238",
@@ -14,7 +14,7 @@ export const activityData: ActivityDataInterface[] = [
     procedures: "Aparelhos fixos ou removíveis, manutenção mensal.",
   },
   {
-    icon: "leaf-outline",
+    icon: "hammer-outline",
     title: "Endodontia",
     description: "Dúvidas, informações e consultas.",
     iconBackgroundColor: "#43bb59",
@@ -26,7 +26,7 @@ export const activityData: ActivityDataInterface[] = [
     procedures: "Tratamento de canal, obturação.",
   },
   {
-    icon: "tooth-outline",
+    icon: "sad-outline",
     title: "Periodontia",
     description: "Dúvidas, informações e consultas.",
     iconBackgroundColor: "#A2A2A2",
@@ -62,7 +62,7 @@ export const activityData: ActivityDataInterface[] = [
     procedures: "Próteses totais ou parciais, implantes.",
   },
   {
-    icon: "ear-outline",
+    icon: "skull-outline",
     title: "Cirurgia Oral e Maxilofacial",
     description: "Dúvidas, informações e consultas.",
     iconBackgroundColor: "#b9d486",
@@ -74,7 +74,7 @@ export const activityData: ActivityDataInterface[] = [
     procedures: "Extrações, cirurgias ortognáticas.",
   },
   {
-    icon: "bicycle-outline",
+    icon: "walk-outline",
     title: "Odontologia Geriátrica",
     description: "Dúvidas, informações e consultas.",
     iconBackgroundColor: "#b42b51",

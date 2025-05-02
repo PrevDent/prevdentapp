@@ -13,7 +13,7 @@ export default function TabNavigator() {
     <Tab.Navigator
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {
-          let iconName: keyof typeof Ionicons.glyphMap = "";
+          let iconName: keyof typeof Ionicons.glyphMap = "home-outline";
 
           if (route.name === "Home") {
             iconName = focused ? "home" : "home-outline";
