@@ -1,4 +1,3 @@
-import React from "react";
 import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
 
@@ -9,7 +8,7 @@ interface AppointmentCardProps {
   doctorName: string;
   speciality: string;
   onPress: () => void; 
-  navigateScreen?: () => void// Adicionando a propriedade onPress
+  navigateScreen?: () => void
 }
 
 const AppointmentCard = ({

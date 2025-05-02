@@ -1,5 +1,5 @@
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
-import { Ionicons } from "@expo/vector-icons"; // Assumindo que você está usando Expo
+import { Ionicons } from "@expo/vector-icons";
 
 import HomeScreen from "../pages/home/home";
 import ProfileScreen from "../pages/usuario/perfil/profileScreen";

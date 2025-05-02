@@ -1,10 +1,9 @@
-import React from "react";
 import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from "react-native";
 import GlobalStyles from "../../../Components/styles/Global";
 import BackArrow from "../../../Components/common/backArrowComponent";
 import ActivityCard from "../../../Components/common/activityAreaCard";
 import { useNavigation } from '@react-navigation/native';
-import { activityData } from "../../../data/activityData"; // Certifique-se de que este caminho está correto
+import { activityData } from "../../../data/activityData";
 import { ActivityDataInterface } from "../../../model/activityData.interface";
 
 function ActivityAreaScreen() {

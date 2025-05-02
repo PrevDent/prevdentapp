@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity} from "react-native";
 import GlobalStyle from "../../Components/styles/Global";
 import SearchBar from "../../Components/common/searchBar";
@@ -100,7 +100,7 @@ const handleProfileScreen = () => {
                 time={appointment.time}
                 doctorName={appointment.doctorName}
                 speciality={appointment.speciality}
-                onPress={() => openModal(appointment)} // Passando a função onPress
+                onPress={() => openModal(appointment)}
               />
             </View>
           ))}

@@ -6,7 +6,6 @@ import GlobalStyle from "../../Components/styles/Global";
 import { StackNavigationProp } from '@react-navigation/stack';
 import { RootStackParamList } from "../../Routes/RootStackNavigation";
 
-// Definindo o tipo de navegação
 type LoginScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Login'>;
 
 interface Props {

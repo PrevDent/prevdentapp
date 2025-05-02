@@ -1,6 +1,4 @@
-import React from "react";
 import { View, Text, StyleSheet, ScrollView } from "react-native";
-import GlobalStyles from "../../../Components/styles/Global";
 import BackArrow from "../../../Components/common/backArrowComponent";
 import { StackNavigationProp } from "@react-navigation/stack";
 import { RootStackParamList } from "../../../Routes/RootStackNavigation";
