@@ -1,5 +1,3 @@
-// src/screens/ProfileScreen.tsx
-import React from "react";
 import { View, Text, Image, StyleSheet, ScrollView } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import MenuItemComponent from "../../../Components/common/infoProfileCard";

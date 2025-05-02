@@ -1,16 +1,15 @@
-import React from 'react';
 import { Modal, View, Text, StyleSheet } from 'react-native';
 
 import ButtonStandard from '../buttonStandard';
 import BackArrow from '../backArrowComponent';
 import { useNavigation } from '@react-navigation/native';
-import { Appointment } from '../../../model/appointment.interface';
+import { AppointmentInterface } from '../../../model/appointment.interface';
 
 
 interface DetailsModalProps {
   visible: boolean;
   onClose: () => void;
-  appointment: Appointment;
+  appointment: AppointmentInterface;
 }
 
 export const DetailsModal = ({ visible, onClose, appointment }: DetailsModalProps) => { 

@@ -1,4 +1,3 @@
-import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
 import * as Progress from 'react-native-progress';
 
@@ -29,7 +28,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   progressBar: {
-    borderRadius: 10, // Bordas arredondadas
+    borderRadius: 10,
   },
 });
 
