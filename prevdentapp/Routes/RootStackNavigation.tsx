@@ -7,7 +7,7 @@ import NewRegistryScreen from "../pages/inserir-registro/newRegistryScreen";
 import TabNavigator from "./TabNavigation";
 import ProfileScreen from "../pages/usuario/perfil/profileScreen";
 import UnderConstructionScreen from "../pages/construcao/buildingScreen";
-import ActivityAreaScreen from "../pages/info/areas-atuacao/ActivityAreaScreen";
+import ActivityAreaScreen from "../pages/info/areas-atuacao/activityAreaScreen";
 import InfoConsultaScreen from "../pages/info/infoConsulta";
 import AreaDetailsScreen from "../pages/info/areas-atuacao/areaDetailsScreen"
 import { AppointmentInterface } from "../model/appointment.interface";

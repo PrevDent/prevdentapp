@@ -4,7 +4,7 @@ import { Ionicons } from "@expo/vector-icons";
 import HomeScreen from "../pages/home/home";
 import ProfileScreen from "../pages/usuario/perfil/profileScreen";
 import NewRegistryScreen from "../pages/inserir-registro/newRegistryScreen";
-import ActivityAreaScreen from "../pages/info/areas-atuacao/ActivityAreaScreen";
+import ActivityAreaScreen from "../pages/info/areas-atuacao/activityAreaScreen"
 
 const Tab = createBottomTabNavigator();
 
@@ -13,7 +13,7 @@ export default function TabNavigator() {
     <Tab.Navigator
       screenOptions={({ route }) => ({
         tabBarIcon: ({ focused, color, size }) => {
-          let iconName: keyof typeof Ionicons.glyphMap = "";
+          let iconName: keyof typeof Ionicons.glyphMap = "home-outline";
 
           if (route.name === "Home") {
             iconName = focused ? "home" : "home-outline";

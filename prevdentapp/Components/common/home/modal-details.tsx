@@ -33,8 +33,8 @@ export const DetailsModal = ({ visible, onClose, appointment }: DetailsModalProp
         <View style={styles.modalContainer}>
           <Text style={styles.modalTitle}>Ver Detalhes</Text>
           <View style={styles.modalContent}>
-            <Text style={styles.modalDescription}><Text style={styles.modalDescriptionText}>Especialidade:</Text> {appointment.speciality}</Text>
-            <Text style={styles.modalDescription}><Text style={styles.modalDescriptionText}>Descrição: </Text> {appointment.description}</Text>
+            <Text style={styles.modalDescription}><Text style={styles.modalDescriptionText}>Especialidade:</Text> {appointment.dentista.especializacao}</Text>
+            <Text style={styles.modalDescription}><Text style={styles.modalDescriptionText}>Descrição: </Text> {appointment.tipoTratamento}</Text>
           </View>
           <ButtonStandard text='Ir para detalhes' onPress={handleInfoConsulta} marginVertical={2} />
           <ButtonStandard text="voltar" onPress={onClose} marginVertical={10} />
