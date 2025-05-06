@@ -1,9 +1,22 @@
 export interface AppointmentInterface {
-  id: number;
-  day: string;
-  month: string;
-  time: string;
-  doctorName: string;
-  speciality: string;
-  description: string;
+  idConsulta: number;
+  data: string;
+  dentista: Dentista;
+  diagnostico?: string;
+  paciente: Paciente;
+  tipoTratamento?: string;
+}
+
+interface Dentista {
+  documento: string,
+  especializacao: string,
+  idDentista: string
+  nome: string;
+}
+
+interface Paciente {
+  cpf: string,
+  dataNascimento: string,
+  idPaciente: string
+  nome: string;
 }
