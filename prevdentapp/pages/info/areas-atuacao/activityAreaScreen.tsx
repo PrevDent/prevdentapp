@@ -1,17 +1,60 @@
-import { View, Text, StyleSheet, ScrollView, TouchableOpacity } from "react-native";
+import React, { useEffect, useState } from "react";
+import {
+  View,
+  Text,
+  StyleSheet,
+  ScrollView,
+  TouchableOpacity,
+  ActivityIndicator,
+} from "react-native";
 import GlobalStyles from "../../../Components/styles/Global";
 import BackArrow from "../../../Components/common/backArrowComponent";
 import ActivityCard from "../../../Components/common/activityAreaCard";
-import { useNavigation } from '@react-navigation/native';
-import { activityData } from "../../../data/activityData";
+import { useNavigation } from "@react-navigation/native";
+import { apiController } from "../../../Components/controller/api.controller"; 
 import { ActivityDataInterface } from "../../../model/activityData.interface";
 
 function ActivityAreaScreen() {
   const navigation = useNavigation();
+  const [activityData, setActivityData] = useState<ActivityDataInterface[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<string | null>(null);
 
   const handleNavigate = (area: ActivityDataInterface) => {
-    navigation.navigate('AreaDetailsScreen', area);
+    navigation.navigate("AreaDetailsScreen", area); 
   };
+
+  
+  const fetchAreasAtuacao = async () => {
+    try {
+      const areas = await apiController.fetchAreasAtuacao(); 
+      setActivityData(areas); 
+    } catch (err) {
+      setError("Erro ao carregar as áreas de atuação."); 
+    } finally {
+      setLoading(false); 
+    }
+  };
+
+  useEffect(() => {
+    fetchAreasAtuacao(); 
+  }, []);
+
+  
+  if (loading) {
+    return (
+      <ActivityIndicator
+        size="large"
+        color="#0000ff"
+        style={{ marginTop: 20 }}
+      />
+    );
+  }
+
+  
+  if (error) {
+    return <Text style={{ color: "red" }}>{error}</Text>;
+  }
 
   return (
     <ScrollView>
@@ -28,7 +71,7 @@ function ActivityAreaScreen() {
                 title={activity.title}
                 description={activity.description}
                 iconBackgroundColor={activity.iconBackgroundColor}
-                onPress={() => handleNavigate(activity)}
+                onPress={() => handleNavigate(activity)} 
               />
             </TouchableOpacity>
           ))}
