@@ -20,7 +20,7 @@ function ProfileScreen() {
   
   const menuItems: MenuItem[] = [
     { title: "Informações pessoais", screen: "InfoUsuario" },
-    { title: "Meus Agendamentos", screen: "UnderConstructionScreen" },
+    { title: "Meus Agendamentos", screen: "MyAppointment" },
     { title: "Consultas realizadas", screen: "UnderConstructionScreen" },
     { title: "Notificações", screen: "UnderConstructionScreen" },
     { title: "Alterar plano", screen: "UnderConstructionScreen" },
