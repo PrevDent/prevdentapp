@@ -1,9 +1,17 @@
-import { ScrollView, StyleSheet, Text, View } from "react-native";
+import { ActivityIndicator, ScrollView, StyleSheet, Text, View } from "react-native";
 import GlobalStyles from "../../../Components/styles/Global";
 import InfoCard from "../../../Components/common/infoCard";
 import Line from "../../../Components/common/line";
 import RegistryCard from "../../../Components/common/registryCard";
 import BackArrow from "../../../Components/common/backArrowComponent";
+import { registroController } from "../../../Components/controller/api.controller";
+import { useAuth } from "../../../Components/context/auth.context";
+import { useEffect, useState } from "react";
+import { RegistroInterface } from "../../../model/registro.interface";
+import { RegistroDetailsModal } from "../../../Components/common/registry/registry.details.modal";
+import { RegistryOptionsModal } from "../../../Components/common/registry/registry.options.modal";
+import { useNavigation } from "@react-navigation/native";
+import { TabRoutes } from "../../../model/tab.routes.enum";
 
 const userinfo = [
   {
@@ -40,13 +48,51 @@ const userinfo = [
   },
 ];
 
-const userregistrys = [
-  { id: 1, title: "Dor na gengiva", icon: "sick", scale: 6 },
-  { id: 2, title: "Dor de dente", icon: "sick", scale: 7 },
-  { id: 3, title: "Mau Hálito", icon: "sick", scale: 4 },
-];
-
 export default function InfoUsuarioScreen() {
+  const { user } = useAuth();
+  const [infoRegistry, setInfoRegistry] = useState<RegistroInterface[]>([]);
+  const [error, setError] = useState<string | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [selectedRegistro, setSelectedRegistro] = useState<RegistroInterface | null>(null);
+  const [showDetailsModal, setShowDetailsModal] = useState(false);
+  const [showOptionsModal, setShowOptionsModal] = useState(false);
+  const navigation = useNavigation();
+
+
+
+  const fetchMeusRegistros = async () => {
+      try {
+        const registroData = await registroController.fetchRegistro(user?.token || "");
+        setInfoRegistry(registroData);
+      } catch (err) {
+        console.error(err);
+        setError("Erro ao carregar os registros.");
+      } finally {
+        setLoading(false);
+      }
+    };
+  
+    useEffect(() => {
+      fetchMeusRegistros();
+    }, []);
+
+    if (loading) {
+      return (
+        <View style={styles.centered}>
+          <ActivityIndicator size="large" color="#013EB0" />
+          <Text>Carregando registros...</Text>
+        </View>
+      );
+    }
+  
+   if (error) {
+      return (
+        <View style={styles.centered}>
+          <Text style={{ color: "red" }}>{error}</Text>
+        </View>
+      );
+    }
+
   return (
     <View style={GlobalStyles.containerHome}>
       <BackArrow />
@@ -81,18 +127,53 @@ export default function InfoUsuarioScreen() {
           <Text style={GlobalStyles.tituloPagina}>Últimos Registros</Text>
         </View>
         <View style={{ alignItems: "center" }}>
-          {userregistrys.map((userregistry) => (
+
+          {infoRegistry.map((registro) => (
             <RegistryCard
-              key={userregistry.id}
-              title={userregistry.title}
-              icon={userregistry.icon}
-              scale={userregistry.scale}
+              key={registro.idRegistro}
+              title={registro.tipo}
+              icon="sick"
+              scale={parseInt(registro.intensidade.toString())}
+              onPress={() => {
+                setSelectedRegistro(registro);
+                setShowDetailsModal(true);
+              }}
+              onOptionsPress={() => {
+                setShowOptionsModal(true);
+                setSelectedRegistro(registro);
+              }}
             />
           ))}
+
+
         </View>
       </ScrollView>
+      {selectedRegistro && (
+          <RegistroDetailsModal
+            visible={showDetailsModal}
+            onClose={() => setShowDetailsModal(false)}
+            registro={selectedRegistro}
+          />
+        )}
+
+        <RegistryOptionsModal
+          visible={showOptionsModal}
+          onClose={() => setShowOptionsModal(false)}
+          onAddPress={() => {
+            setShowOptionsModal(false);
+            navigation.navigate("TabNavigation", {
+              screen: TabRoutes.NovoRegistro});
+          }}
+        />
+
     </View>
   );
 }
 
-const styles = StyleSheet.create({});
+const styles = StyleSheet.create({
+  centered: {
+    alignItems: "center",
+    justifyContent: "center",
+    marginVertical: 30,
+  },
+});
