@@ -1,9 +1,11 @@
-import { View, Text, Image, StyleSheet, ScrollView } from "react-native";
+import React from "react";
+import { View, Text, Image, StyleSheet, ScrollView, Alert } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import MenuItemComponent from "../../../Components/common/infoProfileCard";
 import StatsProfileCard from "../../../Components/common/statsProfile";
 import BackArrow from "../../../Components/common/backArrowComponent";
 import GlobalStyles from "../../../Components/styles/Global";
+import { useAuth } from "../../../Components/context/auth.context";
 
 type MenuItem = {
   title: string;
@@ -13,7 +15,8 @@ type MenuItem = {
 
 function ProfileScreen() {
   const navigation = useNavigation();
-
+  const { logout } = useAuth();
+  
   const menuItems: MenuItem[] = [
     { title: "Informações pessoais", screen: "InfoUsuario" },
     { title: "Meus Agendamentos", screen: "UnderConstructionScreen" },
@@ -23,6 +26,15 @@ function ProfileScreen() {
     { title: "Configurações", screen: "UnderConstructionScreen" },
     { title: "Sair da conta", screen: "Login", color: "red" },
   ];
+
+  const handleLogout = async () => {
+    try {
+      await logout();
+      navigation.navigate('Login'); 
+    } catch (error) {
+      Alert.alert('Erro', 'Não foi possível sair da conta.');
+    }
+  };
 
   return (
     <View style={GlobalStyles.containerHome}>
@@ -37,7 +49,7 @@ function ProfileScreen() {
           <Text style={styles.plan}>plano basic+</Text>
         </View>
         <View style={styles.statsContainer}>
-          <StatsProfileCard content="15" subTitle="Consultas relizadas" />
+          <StatsProfileCard content="15" subTitle="Consultas realizadas" />
           <StatsProfileCard content="21/01" subTitle="Próxima consulta" />
         </View>
 
@@ -46,7 +58,7 @@ function ProfileScreen() {
             <MenuItemComponent
               key={index}
               title={item.title}
-              onPress={() => navigation.navigate(item.screen as never)}
+              onPress={item.title === "Sair da conta" ? handleLogout : () => navigation.navigate(item.screen as never)}
               color={item.color}
             />
           ))}
