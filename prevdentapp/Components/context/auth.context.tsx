@@ -1,6 +1,8 @@
 import { createContext, useContext, useState, useEffect } from 'react';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import axios from 'axios';
+import { JwtPayload } from '../../model/jwt';
+import { jwtDecode } from 'jwt-decode';
 import { User } from '../../model/user';
 
 interface AuthContextType {
@@ -50,7 +52,15 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
       });
       console.log('passou aqui', response.data);
       const jwt = response.data.token;
-      const userData: User = { token: jwt, email };
+      const jwtDecoded: JwtPayload= jwtDecode(jwt);
+
+      const userData: User = {
+          token: jwt,
+          email: jwtDecoded.sub,
+          nome: jwtDecoded.nome,
+          cpf: jwtDecoded.cpf,
+          data_nascimento: jwtDecoded.data_nascimento,
+    };
 
       await AsyncStorage.setItem('user', JSON.stringify(userData));
       console.log('Dados do usuário armazenados:', JSON.stringify(userData));
