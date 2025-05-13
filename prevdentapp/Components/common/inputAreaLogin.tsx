@@ -2,13 +2,18 @@ import { StyleSheet, TextInput, View } from "react-native";
 
 interface InputAreaProps {
   placeholder?: string;
+  value: string;
+  onChangeText: (text: string) => void;
+  secureTextEntry?: boolean; 
   width?: number;
   color?: string;
-  marginVertical?: number;
 }
 
 const InputAreaLogin = ({
   placeholder = "",
+  value,
+  onChangeText,
+  secureTextEntry = false, 
   color = "#FFFFFF",
   width = 260,
 }: InputAreaProps) => {
@@ -17,6 +22,9 @@ const InputAreaLogin = ({
       <View style={styles.inputArea}>
         <TextInput
           placeholder={placeholder}
+          value={value}
+          onChangeText={onChangeText}
+          secureTextEntry={secureTextEntry} 
           style={[styles.textInput, { backgroundColor: color, width }]}
           textAlign="center"
         />
