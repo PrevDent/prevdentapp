@@ -32,7 +32,7 @@ const Stack = createNativeStackNavigator<RootStackParamList>();
 export function RootStackNavigation() {
   return (
     <Stack.Navigator
-      initialRouteName="Login"
+      initialRouteName="TabNavigation"
       screenOptions={{ headerShown: false }}
     >
       <Stack.Screen name="TabNavigation" component={TabNavigator} />

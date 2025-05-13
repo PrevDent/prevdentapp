@@ -1,14 +1,14 @@
-import { NavigationContainer } from "@react-navigation/native";
-import { StatusBar } from "expo-status-bar";
-import { RootStackNavigation } from "./Routes/RootStackNavigation";
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { AuthProvider } from './Components/context/auth.context';
+import AppRoutes from './Routes/AppRoutes';
 
 export default function App() {
   return (
-    <>
-      <StatusBar style="dark" />
+    <AuthProvider>
       <NavigationContainer>
-        <RootStackNavigation />
+        <AppRoutes />
       </NavigationContainer>
-    </>
+    </AuthProvider>
   );
 }
