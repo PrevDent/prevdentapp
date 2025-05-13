@@ -36,6 +36,7 @@ export const registroRepository = {
                     'Authorization': token
                 }
             });
+            console.log("[registroRepository - postRegistro()] Registro enviado com sucesso:", response.data);
             return response.data;
         } catch (error) {
             console.error("[registroRepository - postRegistro()] Erro ao enviar o registro do usuário", error);
