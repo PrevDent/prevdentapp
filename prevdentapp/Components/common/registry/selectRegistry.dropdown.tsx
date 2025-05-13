@@ -6,7 +6,7 @@ import { Control, Controller, FieldError } from "react-hook-form";
 interface SelectRegistryProps {
   name: string;
   control: Control<any>;
-  items: { label: string; value: string }[];
+  items: { label: string; value: number | string }[];
   placeholder: string;
   error?: FieldError;
 }
