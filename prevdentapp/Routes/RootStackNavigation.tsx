@@ -10,7 +10,7 @@ import UnderConstructionScreen from "../pages/construcao/buildingScreen";
 import ActivityAreaScreen from "../pages/info/areas-atuacao/activityAreaScreen";
 import InfoConsultaScreen from "../pages/info/infoConsulta";
 import AreaDetailsScreen from "../pages/info/areas-atuacao/areaDetailsScreen"
-import  MyAppointment from "../pages/meus-agendamentos/MyAppointment";
+import  MyAppointment from "../pages/meus-agendamentos/MyAppointmentScreen";
 import ScheduleAppointment from "../pages/meus-agendamentos/ScheduleAppointment";
 import { AppointmentInterface } from "../model/appointment.interface";
 import { ActivityDataInterface } from "../model/activityData.interface";
