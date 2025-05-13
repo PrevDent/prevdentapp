@@ -19,7 +19,7 @@ export type RootStackParamList = {
   Home: undefined;
   InfoUsuario: undefined;
   NewRegistry: undefined;
-  TabNavigation: undefined;
+  TabNavigation: { screen: string } | undefined;
   ProfileScreen: undefined;
   UnderConstructionScreen: undefined;
   ActivityAreaScreen: undefined;
