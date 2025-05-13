@@ -1,5 +1,5 @@
 
-import { useContext, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity } from "react-native";
 import GlobalStyle from "../../Components/styles/Global";
 import SearchBar from "../../Components/common/searchBar";
@@ -34,10 +34,9 @@ export default function HomeScreen() {
         navigation.navigate("ProfileScreen");
     };
 
-    
-    const fetchConsultas = async () => {
+    const fetchMinhasConsultas = async (token: string) => {
         try {
-            const consultasData = await apiController.fetchConsultas(); 
+            const consultasData = await apiController.fetchMinhasConsultas(user?.token || ""); 
             setAppointments(consultasData); 
         } catch (err) {
             setError("Erro ao carregar as consultas.");
@@ -47,7 +46,7 @@ export default function HomeScreen() {
     };
 
     useEffect(() => {
-        fetchConsultas(); 
+        fetchMinhasConsultas(user?.token || ""); 
     }, []);
 
     if (loading) {
