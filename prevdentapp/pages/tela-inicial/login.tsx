@@ -1,10 +1,13 @@
+import { useState } from "react";
 import { StyleSheet, Text, TouchableOpacity, View, Image, ScrollView } from "react-native";
+import { StackNavigationProp } from '@react-navigation/stack';
+import { RootStackParamList } from "../../Routes/RootStackNavigation";
+import { useAuth } from  "../../Components/context/auth.context";
 import Line from "../../Components/common/line"; 
 import ButtonStandard from "../../Components/common/buttonStandard";
 import InputAreaLogin from "../../Components/common/inputAreaLogin";
 import GlobalStyle from "../../Components/styles/Global";
-import { StackNavigationProp } from '@react-navigation/stack';
-import { RootStackParamList } from "../../Routes/RootStackNavigation";
+import ErrorModal from "../../Components/common/cadastro-login/error-modal";
 
 type LoginScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Login'>;
 
@@ -13,15 +16,36 @@ interface Props {
 }
 
 export default function LoginScreen({ navigation }: Props) { 
+  const { login } = useAuth();
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [modalVisible, setModalVisible] = useState(false);
+  const [errorMessage, setErrorMessage] = useState('');
+
+  const handleLogin = async () => {
+    try {
+      await login(email, password);
+      console.log("Login bem-sucedido!");
+      // navigation.navigate('TabNavigation');
+    } catch (error) {
+      setErrorMessage('Verifique suas credenciais e tente novamente.');
+      setModalVisible(true);
+    }
+  };
+
+  const closeModal = () => {
+    setModalVisible(false);
+  };
+
   return (
     <View style={GlobalStyle.container}>
       <Text style={styles.titlePage}>Login</Text>
       <View>
-        <InputAreaLogin placeholder="E-mail" />
-        <InputAreaLogin placeholder="Senha" />
+        <InputAreaLogin placeholder="E-mail" value={email} onChangeText={setEmail} />
+        <InputAreaLogin placeholder="Senha" secureTextEntry value={password} onChangeText={setPassword} />
       </View>
 
-      <ButtonStandard text="Entrar" onPress={() => navigation.navigate('TabNavigation')} />
+      <ButtonStandard text="Entrar" onPress={handleLogin} />
 
       <View style={styles.naoPossuiContaArea}>
         <Text style={styles.naoPossuiContaText}>Não possui conta?</Text>
@@ -45,6 +69,8 @@ export default function LoginScreen({ navigation }: Props) {
           <Image source={require("../../assets/logo-facebook.png")} />
         </View>
       </View>
+
+      <ErrorModal visible={modalVisible} onClose={closeModal} message={errorMessage} />
     </View>
   );
 }
