@@ -29,7 +29,7 @@ export default function NewRegistryScreen() {
     defaultValues: {
       tipo: "",
       ocorrencia: "",
-      intensidade: "",
+      intensidade: 0,
       informacoes_adicionais: "",
     },
   });
@@ -50,11 +50,11 @@ export default function NewRegistryScreen() {
   ];
 
   const intensidadeOptions = [
-    { label: "Leve", value: "leve" },
-    { label: "Incomodo", value: "incomodo" },
-    { label: "Moderada", value: "moderada" },
-    { label: "Intensa", value: "intensa" },
-    { label: "Urgente", value: "urgente" },
+    { label: "Leve", value: 2},
+    { label: "Incomodo", value: 4},
+    { label: "Moderada", value: 6 },
+    { label: "Intensa", value: 8 },
+    { label: "Urgente", value: 10 },
   ];
 
   async function onSubmit(data: RegistroInterface) {
