@@ -1,5 +1,5 @@
 
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { View, Text, StyleSheet, Image, ScrollView, TouchableOpacity } from "react-native";
 import GlobalStyle from "../../Components/styles/Global";
 import SearchBar from "../../Components/common/searchBar";
@@ -9,6 +9,7 @@ import { AppointmentInterface } from "../../model/appointment.interface";
 import { useNavigation } from "@react-navigation/native";
 import { apiController } from "../../Components/controller/api.controller";
 import { MonthsEnum } from "../../model/month.enum";
+import { useAuth } from "../../Components/context/auth.context";
 
 export default function HomeScreen() {
     const [modalVisible, setModalVisible] = useState(false);
@@ -16,6 +17,7 @@ export default function HomeScreen() {
     const [appointments, setAppointments] = useState<AppointmentInterface[]>([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState<string | null>(null);
+    const {user} = useAuth();
 
     const openModal = (appointment: AppointmentInterface) => {
         setSelectedAppointment(appointment);
@@ -62,7 +64,7 @@ export default function HomeScreen() {
                 <View style={styles.header}>
                     <View style={styles.olaNome}>
                         <Text style={styles.textOla}>Olá,</Text>
-                        <Text style={styles.textOlaNome}>Vitor Santos</Text>
+                        <Text style={styles.textOlaNome}>{user?.nome}</Text>
                     </View>
                     <TouchableOpacity onPress={handleProfileScreen}>
                         <Image source={require("../../assets/vitor-perfil.png")} />

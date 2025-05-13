@@ -15,6 +15,7 @@ type MenuItem = {
 
 function ProfileScreen() {
   const navigation = useNavigation();
+  const { user } = useAuth();
   const { logout } = useAuth();
   
   const menuItems: MenuItem[] = [
@@ -45,7 +46,7 @@ function ProfileScreen() {
             source={require("./../../../assets/profile-picture.png")}
             style={styles.profilePicture}
           />
-          <Text style={styles.name}>Vitor Santos</Text>
+          <Text style={styles.name}>{user?.nome}</Text>
           <Text style={styles.plan}>plano basic+</Text>
         </View>
         <View style={styles.statsContainer}>
