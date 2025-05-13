@@ -16,6 +16,7 @@ import { MonthsEnum } from "../../model/month.enum";
 import DetailsModal from "../../Components/common/home/modal-details";
 import Line from "../../Components/common/line";
 import ButtonStandard from "../../Components/common/buttonStandard";
+import { useNavigation } from "@react-navigation/native";
 
 export default function MyAppointment() {
   const { user } = useAuth();
@@ -25,6 +26,7 @@ export default function MyAppointment() {
   const [appointments, setAppointments] = useState<AppointmentInterface[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const navigation = useNavigation();
 
   const openModal = (appointment: AppointmentInterface) => {
     setSelectedAppointment(appointment);
@@ -34,6 +36,10 @@ export default function MyAppointment() {
   const closeModal = () => {
     setModalVisible(false);
   };
+
+  const handleScheduleAppointment = () => {
+    navigation.navigate("ScheduleAppointment");
+  }
 
   const fetchMinhasConsultas = async () => {
     try {
@@ -83,8 +89,9 @@ export default function MyAppointment() {
         <Line marginVertical={20} color="#c6c6c6" />
 
         <View style={{alignSelf:"center"}}>
-          <ButtonStandard text="Agendar consulta" width={200}/>
+          <ButtonStandard text="Agendar consulta" width={200} onPress={handleScheduleAppointment}/>
         </View>
+
         {appointments.length === 0 ? (
           <View style={styles.centered}>
             <Text style={styles.noAppointmentsText}>
