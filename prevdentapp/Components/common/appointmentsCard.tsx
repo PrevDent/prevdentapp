@@ -2,26 +2,26 @@ import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
 
 interface AppointmentCardProps {
-  day: string;
-  month: string;
-  time: string;
-  doctorName: string;
-  speciality: string;
-  onPress: () => void; 
-  navigateScreen?: () => void
+  day?: string;
+  month?: string;
+  time?: string;
+  doctorName?: string;
+  speciality?: string;
+  onPress: () => void;
+  navigateScreen?: () => void;
 }
 
 const AppointmentCard = ({
-  day,
-  month,
-  time,
-  doctorName,
-  speciality,
-  onPress, 
-  navigateScreen
+  day = "--",
+  month = "--",
+  time = "Horário indefinido",
+  doctorName = "Nome não disponível",
+  speciality = "Especialidade não informada",
+  onPress,
+  navigateScreen,
 }: AppointmentCardProps) => {
   return (
-    <TouchableOpacity onPress={onPress}style={styles.card}>
+    <TouchableOpacity onPress={onPress} style={styles.card}>
       <View>
         <View style={styles.dateContainer}>
           <Text style={styles.dateText}>{day}</Text>
@@ -30,11 +30,12 @@ const AppointmentCard = ({
       </View>
 
       <View style={styles.detailsContainer}>
-        <View>
+        <View style={{ flex: 1 }}>
           <Text style={styles.timeText}>{time}</Text>
           <Text style={styles.doctorName}>{doctorName}</Text>
           <Text style={styles.specialty}>{speciality}</Text>
         </View>
+
         <View style={styles.optionsButtonArea}>
           <TouchableOpacity style={styles.optionsButton} onPress={onPress}>
             <Icon name="more-vert" size={20} color="#FFFFFF" />
@@ -73,6 +74,7 @@ const styles = StyleSheet.create({
     flex: 1,
     marginLeft: 15,
     flexDirection: "row",
+    alignItems: "center",
   },
   timeText: {
     color: "#FFFFFF",
@@ -88,7 +90,6 @@ const styles = StyleSheet.create({
     fontSize: 14,
   },
   optionsButtonArea: {
-    flex: 1,
     alignItems: "flex-end",
   },
   optionsButton: {
