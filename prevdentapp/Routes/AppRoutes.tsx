@@ -1,4 +1,3 @@
-import React from 'react';
 import { createNativeStackNavigator } from '@react-navigation/native-stack';
 import LoginScreen from '../pages/tela-inicial/login';
 import CadastroScreen from '../pages/tela-inicial/cadastro';
