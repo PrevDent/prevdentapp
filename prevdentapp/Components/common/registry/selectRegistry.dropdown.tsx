@@ -34,7 +34,6 @@ export function SelectRegistry({
           />
         )}
       />
-      {error && <Text style={styles.errorText}>Este campo é obrigatório.</Text>}
     </View>
   );
 }
