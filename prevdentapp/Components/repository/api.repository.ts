@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { URL_PREVDENT_API, URL_PREVDENT_LOCAL_JAVA_API } from '../../constants';
+import { URL_PREVDENT_API, URL_PREVDENT_JAVA_API, URL_PREVDENT_LOCAL_JAVA_API } from '../../constants';
 import { RegistroInterface } from '../../model/registro.interface';
 
 export const apiRepository = {
@@ -15,7 +15,7 @@ export const apiRepository = {
 
     getMinhasConsultas: async (token: string) => {
         try{
-            const response = await axios.get(`${URL_PREVDENT_LOCAL_JAVA_API}/consulta/minhas`, {
+            const response = await axios.get(`${URL_PREVDENT_JAVA_API}/consulta/minhas`, {
                 headers: {
                     'Authorization': token
                 }
@@ -31,7 +31,7 @@ export const apiRepository = {
 export const registroRepository = {
     postRegistro: async (data: RegistroInterface, token: string) => {
         try {
-            const response = await axios.post(`${URL_PREVDENT_LOCAL_JAVA_API}/novos-registros/cadastrar`, data, {
+            const response = await axios.post(`${URL_PREVDENT_JAVA_API}/novos-registros/cadastrar`, data, {
                 headers: {
                     'Authorization': token
                 }
@@ -46,7 +46,7 @@ export const registroRepository = {
 
     getRegistro: async (token: string) => {
         try{
-            const response = await axios.get(`${URL_PREVDENT_LOCAL_JAVA_API}/novos-registros`, {
+            const response = await axios.get(`${URL_PREVDENT_JAVA_API}/novos-registros`, {
                 headers: {
                     'Authorization': token
                 }
