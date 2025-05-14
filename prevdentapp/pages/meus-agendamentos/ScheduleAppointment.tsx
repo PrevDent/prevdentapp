@@ -6,22 +6,23 @@ import {
   TouchableOpacity,
   ScrollView,
   TextInput,
-  Alert,
 } from "react-native";
 import { useForm, Controller } from "react-hook-form";
 import RNPickerSelect from "react-native-picker-select";
 import Icon from "react-native-vector-icons/MaterialIcons";
-import AsyncStorage from "@react-native-async-storage/async-storage";
 import { apiController, dentistaController } from "../../Components/controller/api.controller";
 import GlobalStyles from "../../Components/styles/Global";
 import BackArrow from "../../Components/common/backArrowComponent";
+import SuccessModal from "../../Components/common/agendamentos/sucess.modal";
+import ErrorModal from "../../Components/common/agendamentos/error.modal";
+import OptionsModal from "../../Components/common/agendamentos/options.modal";
 import { useAuth } from "../../Components/context/auth.context";
 
 interface FormData {
   especialidade: string;
   documento: string;
-  data: string; // dd/mm/yyyy
-  hora: string; // hh:mm
+  data: string; 
+  hora: string;
   tipo_tratamento: string;
 }
 
@@ -33,6 +34,11 @@ export default function ScheduleAppointment() {
   const { user } = useAuth();
 
   const selectedEspecialidade = watch("especialidade");
+
+  // 🟢 Estados dos modais
+  const [successVisible, setSuccessVisible] = useState(false);
+  const [errorVisible, setErrorVisible] = useState(false);
+  const [optionsVisible, setOptionsVisible] = useState(false);
 
   useEffect(() => {
     const fetchDentistas = async () => {
@@ -80,11 +86,11 @@ export default function ScheduleAppointment() {
       };
 
       await apiController.submitAppointmment(payload, user?.token || "");
-      Alert.alert("Sucesso", "Consulta agendada com sucesso!");
+      setSuccessVisible(true);
       reset();
     } catch (err) {
       console.error(err);
-      Alert.alert("Erro", "Não foi possível agendar a consulta.");
+      setErrorVisible(true);
     }
   };
 
@@ -96,7 +102,7 @@ export default function ScheduleAppointment() {
           <View style={GlobalStyles.tituloPaginaArea}>
             <Text style={GlobalStyles.tituloPagina}>Novo agendamento</Text>
           </View>
-          <TouchableOpacity>
+          <TouchableOpacity onPress={() => setOptionsVisible(true)}>
             <Icon name="more-vert" size={30} />
           </TouchableOpacity>
         </View>
@@ -112,9 +118,7 @@ export default function ScheduleAppointment() {
               onValueChange={onChange}
               value={value}
               placeholder={{ label: "Selecione uma especialidade", value: null }}
-              items={[
-                ...new Set(dentistas.map((d: any) => d.especializacao)),
-              ].map((especialidade: string) => ({
+              items={[...new Set(dentistas.map((d: any) => d.especializacao))].map((especialidade: string) => ({
                 label: especialidade,
                 value: especialidade,
               }))}
@@ -195,6 +199,11 @@ export default function ScheduleAppointment() {
           <Text style={styles.buttonText}>Agendar consulta</Text>
         </TouchableOpacity>
       </View>
+
+      {/* 🟢 Modais */}
+      <SuccessModal visible={successVisible} onClose={() => setSuccessVisible(false)} />
+      <ErrorModal visible={errorVisible} onClose={() => setErrorVisible(false)} />
+      <OptionsModal visible={optionsVisible} onClose={() => setOptionsVisible(false)} />
     </ScrollView>
   );
 }
