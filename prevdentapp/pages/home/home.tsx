@@ -17,6 +17,7 @@ import { useNavigation } from "@react-navigation/native";
 import { apiController } from "../../Components/controller/api.controller";
 import { MonthsEnum } from "../../model/month.enum";
 import { useAuth } from "../../Components/context/auth.context";
+import Line from "../../Components/common/line";
 
 export default function HomeScreen() {
   const [modalVisible, setModalVisible] = useState(false);
@@ -77,61 +78,61 @@ export default function HomeScreen() {
   }
 
   return (
-    <ScrollView contentContainerStyle={GlobalStyle.containerHome}>
-      <View style={styles.header}>
-        <View style={styles.olaNome}>
-          <Text style={styles.textOla}>Olá,</Text>
-          <Text style={styles.textOlaNome}>{user?.nome}</Text>
-        </View>
-        <TouchableOpacity onPress={handleProfileScreen}>
-          <Image source={require("../../assets/vitor-perfil.png")} />
-        </TouchableOpacity>
-      </View>
-
-      <SearchBar />
-
-      <Image
-        style={styles.bannerContainer}
-        source={require("./../../assets/banner.png")}
-      />
-
-      <View style={GlobalStyle.tituloPaginaArea}>
-        <Text style={GlobalStyle.tituloPagina}>Consultas agendadas</Text>
-      </View>
-
-      {appointments.length === 0 ? (
-        <View style={styles.centered}>
-          <Text style={styles.noAppointmentsText}>
-            Você não possui consultas agendadas.
-          </Text>
-        </View>
-      ) : (
-        appointments.map((appointment) => (
-          <View key={appointment.idConsulta}>
-            <AppointmentCard
-              day={new Date(appointment.data).getDate().toString()}
-              month={
-                MonthsEnum[new Date(appointment.data).getMonth() + 1]
-              }
-              time={new Date(appointment.data).toLocaleTimeString([], {
-                hour: "2-digit",
-                minute: "2-digit",
-              })}
-              doctorName={appointment.dentista.nome}
-              speciality={appointment.dentista.especializacao}
-              onPress={() => openModal(appointment)}
-            />
+    <ScrollView>
+      <View style={GlobalStyle.containerHome}>
+        <View style={styles.header}>
+          <View style={styles.olaNome}>
+            <Text style={styles.textOla}>Olá,</Text>
+            <Text style={styles.textOlaNome}>{user?.nome}</Text>
           </View>
-        ))
-      )}
+          <TouchableOpacity onPress={handleProfileScreen}>
+            <Image source={require("../../assets/vitor-perfil.png")} />
+          </TouchableOpacity>
+        </View>
 
-      {selectedAppointment && (
-        <DetailsModal
-          visible={modalVisible}
-          onClose={closeModal}
-          appointment={selectedAppointment}
+        <Line color="#c6c6c6"/>
+
+        <Image
+          style={styles.bannerContainer}
+          source={require("./../../assets/banner.png")}
         />
-      )}
+
+        <View style={GlobalStyle.tituloPaginaArea}>
+          <Text style={GlobalStyle.tituloPagina}>Consultas agendadas</Text>
+        </View>
+
+        {appointments.length === 0 ? (
+          <View style={styles.centered}>
+            <Text style={styles.noAppointmentsText}>
+              Você não possui consultas agendadas.
+            </Text>
+          </View>
+        ) : (
+          appointments.map((appointment) => (
+            <View key={appointment.idConsulta}>
+              <AppointmentCard
+                day={new Date(appointment.data).getDate().toString()}
+                month={MonthsEnum[new Date(appointment.data).getMonth() + 1]}
+                time={new Date(appointment.data).toLocaleTimeString([], {
+                  hour: "2-digit",
+                  minute: "2-digit",
+                })}
+                doctorName={appointment.dentista.nome}
+                speciality={appointment.dentista.especializacao}
+                onPress={() => openModal(appointment)}
+              />
+            </View>
+          ))
+        )}
+
+        {selectedAppointment && (
+          <DetailsModal
+            visible={modalVisible}
+            onClose={closeModal}
+            appointment={selectedAppointment}
+          />
+        )}
+      </View>
     </ScrollView>
   );
 }
