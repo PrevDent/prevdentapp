@@ -31,15 +31,12 @@ export default function ScheduleAppointment() {
   const [cpf, setCpf] = useState<string>("");
   const [filteredDentistas, setFilteredDentistas] = useState<any[]>([]);
   const { control, handleSubmit, watch, reset } = useForm<FormData>();
-  const { user } = useAuth();
-
-  const selectedEspecialidade = watch("especialidade");
-
-  // 🟢 Estados dos modais
   const [successVisible, setSuccessVisible] = useState(false);
   const [errorVisible, setErrorVisible] = useState(false);
   const [optionsVisible, setOptionsVisible] = useState(false);
-
+  const { user } = useAuth();
+  const selectedEspecialidade = watch("especialidade");
+  
   useEffect(() => {
     const fetchDentistas = async () => {
       try {
@@ -107,7 +104,6 @@ export default function ScheduleAppointment() {
           </TouchableOpacity>
         </View>
 
-        {/* Especialidade */}
         <Text style={styles.label}>Especialidade</Text>
         <Controller
           control={control}
@@ -126,7 +122,6 @@ export default function ScheduleAppointment() {
           )}
         />
 
-        {/* Dentista */}
         <Text style={styles.label}>Dentista</Text>
         <Controller
           control={control}
@@ -145,7 +140,6 @@ export default function ScheduleAppointment() {
           )}
         />
 
-        {/* Data */}
         <Text style={styles.label}>Data da consulta</Text>
         <Controller
           control={control}
@@ -162,7 +156,6 @@ export default function ScheduleAppointment() {
           )}
         />
 
-        {/* Hora */}
         <Text style={styles.label}>Hora da consulta</Text>
         <Controller
           control={control}
@@ -179,7 +172,6 @@ export default function ScheduleAppointment() {
           )}
         />
 
-        {/* Tipo de tratamento */}
         <Text style={styles.label}>Tipo de tratamento</Text>
         <Controller
           control={control}
@@ -200,7 +192,6 @@ export default function ScheduleAppointment() {
         </TouchableOpacity>
       </View>
 
-      {/* 🟢 Modais */}
       <SuccessModal visible={successVisible} onClose={() => setSuccessVisible(false)} />
       <ErrorModal visible={errorVisible} onClose={() => setErrorVisible(false)} />
       <OptionsModal visible={optionsVisible} onClose={() => setOptionsVisible(false)} />
