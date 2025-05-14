@@ -10,8 +10,11 @@ import UnderConstructionScreen from "../pages/construcao/buildingScreen";
 import ActivityAreaScreen from "../pages/info/areas-atuacao/activityAreaScreen";
 import InfoConsultaScreen from "../pages/info/infoConsulta";
 import AreaDetailsScreen from "../pages/info/areas-atuacao/areaDetailsScreen"
+import  MyAppointment from "../pages/meus-agendamentos/MyAppointmentScreen";
+import ScheduleAppointment from "../pages/meus-agendamentos/ScheduleAppointment";
 import { AppointmentInterface } from "../model/appointment.interface";
 import { ActivityDataInterface } from "../model/activityData.interface";
+
 
 export type RootStackParamList = {
   Login: undefined;
@@ -25,6 +28,8 @@ export type RootStackParamList = {
   ActivityAreaScreen: undefined;
   InfoConsultaScreen: AppointmentInterface;
   AreaDetailsScreen: ActivityDataInterface
+  MyAppointment: undefined;
+  ScheduleAppointment: undefined;
 };
 
 const Stack = createNativeStackNavigator<RootStackParamList>();
@@ -46,6 +51,8 @@ export function RootStackNavigation() {
       <Stack.Screen name="ActivityAreaScreen" component={ActivityAreaScreen} />
       <Stack.Screen name="InfoConsultaScreen" component={InfoConsultaScreen} />
       <Stack.Screen name="AreaDetailsScreen" component={AreaDetailsScreen} />
+      <Stack.Screen name="MyAppointment" component={MyAppointment} />
+      <Stack.Screen name="ScheduleAppointment" component={ScheduleAppointment} />
       
     </Stack.Navigator>
   );

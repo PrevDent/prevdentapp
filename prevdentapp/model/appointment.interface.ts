@@ -7,16 +7,23 @@ export interface AppointmentInterface {
   tipoTratamento?: string;
 }
 
+export interface ScheduleAppointmentInterface{
+  paciente: Paciente;
+  dentista: Dentista;
+  data_consulta: string;
+  tipo_tratamento: string;
+}
+
 interface Dentista {
-  documento: string,
-  especializacao: string,
-  idDentista: string
-  nome: string;
+  idDentista?: string
+  nome?: string;
+  documento_dentista?: string,
+  especializacao?: string,
 }
 
 interface Paciente {
-  cpf: string,
-  dataNascimento: string,
-  idPaciente: string
-  nome: string;
+  idPaciente?: string
+  nome?: string;
+  cpf?: string,
+  dataNascimento?: string,
 }
