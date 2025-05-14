@@ -9,7 +9,6 @@ import {
   ActivityIndicator,
 } from "react-native";
 import GlobalStyle from "../../Components/styles/Global";
-import SearchBar from "../../Components/common/searchBar";
 import AppointmentCard from "../../Components/common/appointmentsCard";
 import DetailsModal from "../../Components/common/home/modal-details";
 import { AppointmentInterface } from "../../model/appointment.interface";
@@ -18,6 +17,7 @@ import { apiController } from "../../Components/controller/api.controller";
 import { MonthsEnum } from "../../model/month.enum";
 import { useAuth } from "../../Components/context/auth.context";
 import Line from "../../Components/common/line";
+import { LinearGradient } from "expo-linear-gradient";
 
 export default function HomeScreen() {
   const [modalVisible, setModalVisible] = useState(false);
@@ -90,12 +90,28 @@ export default function HomeScreen() {
           </TouchableOpacity>
         </View>
 
-        <Line color="#c6c6c6"/>
+        <Line color="#c6c6c6" />
 
-        <Image
+        <LinearGradient
+          colors={["#2d76ff", "#acc9ff"]}
+          start={{ x: 1, y: 0 }}
+          end={{ x: 0, y: 0 }}
           style={styles.bannerContainer}
-          source={require("./../../assets/banner.png")}
-        />
+        >
+          <View style={styles.bannerContent}>
+            <View style={styles.bannerTextContainer}>
+              <Text style={styles.bannerTitle}>É prazer te ajudar, {user?.nome?.split(" ")[0]}!</Text>
+              <Text style={styles.bannerSubtitle}>
+                Confira seus agendamentos e muito mais!
+              </Text>
+            </View>
+            <Image
+              source={require("../../assets/banner-feliz.png")}
+              style={styles.bannerImage}
+              resizeMode="contain"
+            />
+          </View>
+        </LinearGradient>
 
         <View style={GlobalStyle.tituloPaginaArea}>
           <Text style={GlobalStyle.tituloPagina}>Consultas agendadas</Text>
@@ -170,5 +186,32 @@ const styles = StyleSheet.create({
     fontSize: 16,
     color: "#666",
     marginTop: 10,
+  },
+  bannerContent: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    flex: 1,
+  },
+  bannerTextContainer: {
+    flex: 1,
+    paddingHorizontal: 10,
+  },
+
+  bannerTitle: {
+    fontSize: 16,
+    fontWeight: "bold",
+    color: "#000",
+    marginBottom: 5,
+  },
+
+  bannerSubtitle: {
+    fontSize: 14,
+    color: "#4d4d4d",
+  },
+
+  bannerImage: {
+    width: 200,
+    height: 300,
   },
 });
