@@ -2,37 +2,41 @@ import { StyleSheet, Text, View, TouchableOpacity } from "react-native";
 import Icon from "react-native-vector-icons/MaterialIcons";
 import PainLevelBar from "./../common/painLevelBar";
 
-interface InfoCardProps {
+interface RegistryCardProps {
   title: string;
   icon: string;
   scale: number;
+  onPress?: () => void;
+  onOptionsPress?: () => void;
 }
 
-const InfoCard = ({
-  title = "Input text",
-  icon = "input icon",
-  scale = 5,
-}: InfoCardProps) => {
+const RegistryCard = ({
+  title,
+  icon,
+  scale,
+  onPress,
+  onOptionsPress
+}: RegistryCardProps) => {
   return (
-    <View style={styles.card}>
+    <TouchableOpacity style={styles.card} onPress={onPress}>
       <View style={{ flexDirection: "row", alignItems: "center" }}>
         <View style={styles.contentContainer}>
-          <View  style={styles.contentArea}>
+          <View style={styles.contentArea}>
             <View style={styles.iconContainer}>
-              <Icon name={icon} size={30} color="#fff"/>
+              <Icon name={icon} size={30} color="#fff" />
             </View>
             <View style={styles.textArea}>
               <Text style={styles.title}>{title}</Text>
-              <PainLevelBar painLevel={scale}/>
+              <PainLevelBar painLevel={scale} />
             </View>
           </View>
 
-          <TouchableOpacity style={styles.optionsButton}>
+          <TouchableOpacity style={styles.optionsButton} onPress={onOptionsPress}>
             <Icon name="more-vert" size={30} color="#000000" />
-          </TouchableOpacity> 
+          </TouchableOpacity>
         </View>
       </View>
-    </View>
+    </TouchableOpacity>
   );
 };
 
@@ -84,4 +88,4 @@ const styles = StyleSheet.create({
   }
 });
 
-export default InfoCard;
+export default RegistryCard;

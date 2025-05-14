@@ -5,6 +5,7 @@ interface buttonAddRegistryProps {
   color?: string;
   height?: number;
   top?: number;
+  onPress?: () => void;
 }
 
 const buttonAddRegistry = ({
@@ -12,9 +13,10 @@ const buttonAddRegistry = ({
   color = "#f6f6f6",
   height = 70,
   top = 0,
+  onPress = () => {},
 }: buttonAddRegistryProps) => {
   return (
-    <TouchableOpacity style={styles.container}>
+    <TouchableOpacity style={styles.container} onPress={onPress}>
       <Text style={styles.textButton}>{placeholder}</Text>
     </TouchableOpacity>
   );
