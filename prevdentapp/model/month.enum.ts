@@ -4,12 +4,12 @@ export enum MonthsEnum {
     FEB,
     MAR,
     APR,
-    MAY,
+    MAI,
     JUN,
     JUL,
     AUG,
-    SEP,
-    OCT,
+    SET,
+    OUT,
     NOV,
-    DEC
+    DEZ
 }
