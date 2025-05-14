@@ -1,11 +1,20 @@
-import React from "react";
-import { View, Text, Image, StyleSheet, ScrollView, Alert } from "react-native";
+import React, { useEffect, useState } from "react";
+import {
+  View,
+  Text,
+  Image,
+  StyleSheet,
+  ScrollView,
+  Alert,
+} from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import MenuItemComponent from "../../../Components/common/infoProfileCard";
 import StatsProfileCard from "../../../Components/common/statsProfile";
 import BackArrow from "../../../Components/common/backArrowComponent";
 import GlobalStyles from "../../../Components/styles/Global";
 import { useAuth } from "../../../Components/context/auth.context";
+import { apiController } from "../../../Components/controller/api.controller";
+import { AppointmentInterface } from "../../../model/appointment.interface";
 
 type MenuItem = {
   title: string;
@@ -15,9 +24,11 @@ type MenuItem = {
 
 function ProfileScreen() {
   const navigation = useNavigation();
-  const { user } = useAuth();
-  const { logout } = useAuth();
-  
+  const { user, logout } = useAuth();
+
+  const [qtdConsultas, setQtdConsultas] = useState("0");
+  const [proximaConsulta, setProximaConsulta] = useState("--/--");
+
   const menuItems: MenuItem[] = [
     { title: "Informações pessoais", screen: "InfoUsuario" },
     { title: "Meus Agendamentos", screen: "MyAppointment" },
@@ -31,11 +42,37 @@ function ProfileScreen() {
   const handleLogout = async () => {
     try {
       await logout();
-      navigation.navigate('Login'); 
+      navigation.navigate("Login");
     } catch (error) {
-      Alert.alert('Erro', 'Não foi possível sair da conta.');
+      Alert.alert("Erro", "Não foi possível sair da conta.");
     }
   };
+
+  const fetchConsultas = async () => {
+    try {
+      const consultas: AppointmentInterface[] = await apiController.fetchMinhasConsultas(user?.token || "");
+      setQtdConsultas(consultas.length.toString());
+
+      const hoje = new Date();
+      const futuras = consultas.filter((c) => new Date(c.data) >= hoje);
+
+      if (futuras.length > 0) {
+        const maisProxima = futuras.reduce((anterior, atual) =>
+          new Date(anterior.data) < new Date(atual.data) ? anterior : atual
+        );
+        const data = new Date(maisProxima.data);
+        const dia = String(data.getDate()).padStart(2, "0");
+        const mes = String(data.getMonth() + 1).padStart(2, "0");
+        setProximaConsulta(`${dia}/${mes}`);
+      }
+    } catch (error) {
+      console.error("Erro ao buscar consultas:", error);
+    }
+  };
+
+  useEffect(() => {
+    fetchConsultas();
+  }, []);
 
   return (
     <View style={GlobalStyles.containerHome}>
@@ -49,9 +86,10 @@ function ProfileScreen() {
           <Text style={styles.name}>{user?.nome}</Text>
           <Text style={styles.plan}>plano basic+</Text>
         </View>
+
         <View style={styles.statsContainer}>
-          <StatsProfileCard content="15" subTitle="Consultas realizadas" />
-          <StatsProfileCard content="21/01" subTitle="Próxima consulta" />
+          <StatsProfileCard content={qtdConsultas} subTitle="Consultas realizadas" />
+          <StatsProfileCard content={proximaConsulta} subTitle="Próxima consulta" />
         </View>
 
         <View style={styles.menuContainer}>
@@ -59,7 +97,11 @@ function ProfileScreen() {
             <MenuItemComponent
               key={index}
               title={item.title}
-              onPress={item.title === "Sair da conta" ? handleLogout : () => navigation.navigate(item.screen as never)}
+              onPress={
+                item.title === "Sair da conta"
+                  ? handleLogout
+                  : () => navigation.navigate(item.screen as never)
+              }
               color={item.color}
             />
           ))}
@@ -70,11 +112,6 @@ function ProfileScreen() {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: "#fff",
-    paddingTop: "20%",
-  },
   header: {
     alignItems: "center",
     padding: 20,
@@ -100,18 +137,6 @@ const styles = StyleSheet.create({
     backgroundColor: "#FFF",
     marginBottom: 20,
     gap: 20,
-  },
-  statItem: {
-    alignItems: "center",
-  },
-  statNumber: {
-    fontSize: 24,
-    fontWeight: "bold",
-    color: "#013EB0",
-  },
-  statLabel: {
-    fontSize: 14,
-    color: "#666",
   },
   menuContainer: {
     backgroundColor: "#FFF",
