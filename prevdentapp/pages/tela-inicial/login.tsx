@@ -27,7 +27,6 @@ export default function LoginScreen({ navigation }: Props) {
     try {
       await login(email, password);
       console.log("Login bem-sucedido!");
-      navigation.navigate(TabRoutes.Home);
     } catch (error) {
       setErrorMessage('Verifique suas credenciais e tente novamente.');
       setModalVisible(true);
