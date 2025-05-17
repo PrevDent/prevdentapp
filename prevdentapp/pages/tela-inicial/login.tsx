@@ -8,6 +8,7 @@ import ButtonStandard from "../../Components/common/buttonStandard";
 import InputAreaLogin from "../../Components/common/inputAreaLogin";
 import GlobalStyle from "../../Components/styles/Global";
 import ErrorModal from "../../Components/common/cadastro-login/error-modal";
+import { TabRoutes } from "../../model/tab.routes.enum";
 
 type LoginScreenNavigationProp = StackNavigationProp<RootStackParamList, 'Login'>;
 
@@ -26,7 +27,7 @@ export default function LoginScreen({ navigation }: Props) {
     try {
       await login(email, password);
       console.log("Login bem-sucedido!");
-      // navigation.navigate('TabNavigation');
+      navigation.navigate(TabRoutes.Home);
     } catch (error) {
       setErrorMessage('Verifique suas credenciais e tente novamente.');
       setModalVisible(true);
