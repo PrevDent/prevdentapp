@@ -18,6 +18,7 @@ import { MonthsEnum } from "../../model/month.enum";
 import { useAuth } from "../../Components/context/auth.context";
 import Line from "../../Components/common/line";
 import { LinearGradient } from "expo-linear-gradient";
+import Icon from "react-native-vector-icons/MaterialIcons";
 
 export default function HomeScreen() {
   const [modalVisible, setModalVisible] = useState(false);
@@ -78,8 +79,8 @@ export default function HomeScreen() {
   }
 
   return (
-    <ScrollView>
-      <View style={GlobalStyle.containerHome}>
+    <View style={GlobalStyle.containerHome}>
+      <ScrollView>
         <View style={styles.header}>
           <View style={styles.olaNome}>
             <Text style={styles.textOla}>Olá,</Text>
@@ -100,7 +101,9 @@ export default function HomeScreen() {
         >
           <View style={styles.bannerContent}>
             <View style={styles.bannerTextContainer}>
-              <Text style={styles.bannerTitle}>É prazer te ajudar, {user?.nome?.split(" ")[0]}!</Text>
+              <Text style={styles.bannerTitle}>
+                É prazer te ajudar, {user?.nome?.split(" ")[0]}!
+              </Text>
               <Text style={styles.bannerSubtitle}>
                 Confira seus agendamentos e muito mais!
               </Text>
@@ -113,8 +116,13 @@ export default function HomeScreen() {
           </View>
         </LinearGradient>
 
-        <View style={GlobalStyle.tituloPaginaArea}>
+        <View style={[GlobalStyle.tituloPaginaArea, styles.titleSchedule]}>
           <Text style={GlobalStyle.tituloPagina}>Consultas agendadas</Text>
+          <TouchableOpacity
+            onPress={() => navigation.navigate("ScheduleAppointment")}
+          >
+            <Icon name="more-vert" size={30} color="#000" />
+          </TouchableOpacity>
         </View>
 
         {appointments.length === 0 ? (
@@ -148,8 +156,8 @@ export default function HomeScreen() {
             appointment={selectedAppointment}
           />
         )}
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </View>
   );
 }
 
@@ -158,7 +166,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    width: "80%",
+    alignSelf: "center",
+    width: "90%",
   },
   olaNome: {
     flexDirection: "column",
@@ -176,6 +185,7 @@ const styles = StyleSheet.create({
     height: 200,
     marginVertical: 20,
     borderRadius: 20,
+    alignSelf: "center",
   },
   centered: {
     alignItems: "center",
@@ -214,4 +224,11 @@ const styles = StyleSheet.create({
     width: 200,
     height: 300,
   },
+  titleSchedule:{
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    alignSelf: "center",
+    width: 360 
+  }
 });
