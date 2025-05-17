@@ -88,7 +88,7 @@ function ProfileScreen() {
         </View>
 
         <View style={styles.statsContainer}>
-          <StatsProfileCard content={qtdConsultas} subTitle="Consultas realizadas" />
+          <StatsProfileCard content={qtdConsultas} subTitle="Consultas agendadas" />
           <StatsProfileCard content={proximaConsulta} subTitle="Próxima consulta" />
         </View>
 
