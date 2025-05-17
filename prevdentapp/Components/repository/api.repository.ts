@@ -1,18 +1,10 @@
 import axios from 'axios';
-import { URL_PREVDENT_API, URL_PREVDENT_JAVA_API, URL_PREVDENT_LOCAL_JAVA_API } from '../../constants';
+import { URL_PREVDENT_JAVA_API } from '../../constants';
 import { RegistroInterface } from '../../model/registro.interface';
 import { ScheduleAppointmentInterface } from '../../model/appointment.interface';
+import areasData from '../data/areas-atuacao.json';
 
 export const apiRepository = {
-    getAreasAtuacao: async () => {
-        try {
-            const response = await axios.get(`${URL_PREVDENT_API}/areas-atuacao`);
-            return response.data; 
-        } catch (error) {
-            console.error("Erro ao buscar áreas de atuação:", error);
-            throw error; 
-        }
-    },
 
     getMinhasConsultas: async (token: string) => {
         try{
