@@ -1,10 +1,8 @@
 import { Modal, View, Text, StyleSheet } from 'react-native';
-
 import ButtonStandard from '../buttonStandard';
 import BackArrow from '../backArrowComponent';
 import { useNavigation } from '@react-navigation/native';
 import { AppointmentInterface } from '../../../model/appointment.interface';
-
 
 interface DetailsModalProps {
   visible: boolean;
