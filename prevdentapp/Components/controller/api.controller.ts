@@ -3,16 +3,6 @@ import { RegistroInterface } from '../../model/registro.interface';
 import { apiService, dentistaService, registroService } from '../services/api.service'; 
 
 export const apiController = {
-    async fetchAreasAtuacao() {
-        try {
-            const areas = await apiService.fetchAreasAtuacao();
-            return areas;
-        } catch (error) {
-            console.error("[apiController - fetchAreasAtuacao()]Erro na controller ao buscar áreas de atuação:", error);
-            throw error;
-        }
-    },
-
      async fetchMinhasConsultas(token: string) {
         try {
             const consultas = await apiService.fetchMinhasConsultas(token);

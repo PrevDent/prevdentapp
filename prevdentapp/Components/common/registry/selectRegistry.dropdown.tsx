@@ -1,4 +1,3 @@
-import React from "react";
 import { View, Text, StyleSheet } from "react-native";
 import RNPickerSelect from "react-native-picker-select";
 import { Control, Controller, FieldError } from "react-hook-form";

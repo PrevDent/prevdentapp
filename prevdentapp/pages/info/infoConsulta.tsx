@@ -1,4 +1,3 @@
-import React from "react";
 import { Text, View, ScrollView, StyleSheet, Dimensions } from "react-native";
 import Icon from "react-native-vector-icons/Ionicons";
 import BackArrow from "../../Components/common/backArrowComponent";

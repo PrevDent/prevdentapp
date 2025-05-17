@@ -6,6 +6,7 @@ import {
   StyleSheet,
   ScrollView,
   Alert,
+  RefreshControl
 } from "react-native";
 import { useNavigation } from "@react-navigation/native";
 import MenuItemComponent from "../../../Components/common/infoProfileCard";
@@ -28,6 +29,8 @@ function ProfileScreen() {
 
   const [qtdConsultas, setQtdConsultas] = useState("0");
   const [proximaConsulta, setProximaConsulta] = useState("--/--");
+  const [refreshing, setRefreshing] = useState(false);
+
 
   const menuItems: MenuItem[] = [
     { title: "Informações pessoais", screen: "InfoUsuario" },
@@ -38,6 +41,13 @@ function ProfileScreen() {
     { title: "Configurações", screen: "UnderConstructionScreen" },
     { title: "Sair da conta", screen: "Login", color: "red" },
   ];
+
+  const onRefresh = async () => {
+    setRefreshing(true);
+    await fetchConsultas();
+    setRefreshing(false);
+  };
+
 
   const handleLogout = async () => {
     try {
@@ -77,7 +87,15 @@ function ProfileScreen() {
   return (
     <View style={GlobalStyles.containerHome}>
       <BackArrow />
-      <ScrollView>
+      <ScrollView 
+        refreshControl={
+            <RefreshControl 
+            refreshing={refreshing} 
+            onRefresh={onRefresh} 
+            colors={["#013EB0"]} 
+            />
+        }>
+
         <View style={styles.header}>
           <Image
             source={require("./../../../assets/profile-picture.png")}
@@ -88,7 +106,7 @@ function ProfileScreen() {
         </View>
 
         <View style={styles.statsContainer}>
-          <StatsProfileCard content={qtdConsultas} subTitle="Consultas realizadas" />
+          <StatsProfileCard content={qtdConsultas} subTitle="Consultas agendadas" />
           <StatsProfileCard content={proximaConsulta} subTitle="Próxima consulta" />
         </View>
 

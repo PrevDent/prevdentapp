@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import {
   View,
   Text,
@@ -7,6 +7,7 @@ import {
   ScrollView,
   TouchableOpacity,
   ActivityIndicator,
+  RefreshControl,
 } from "react-native";
 import GlobalStyle from "../../Components/styles/Global";
 import AppointmentCard from "../../Components/common/appointmentsCard";
@@ -18,6 +19,7 @@ import { MonthsEnum } from "../../model/month.enum";
 import { useAuth } from "../../Components/context/auth.context";
 import Line from "../../Components/common/line";
 import { LinearGradient } from "expo-linear-gradient";
+import Icon from "react-native-vector-icons/MaterialIcons";
 
 export default function HomeScreen() {
   const [modalVisible, setModalVisible] = useState(false);
@@ -25,6 +27,7 @@ export default function HomeScreen() {
     useState<AppointmentInterface | null>(null);
   const [appointments, setAppointments] = useState<AppointmentInterface[]>([]);
   const [loading, setLoading] = useState(true);
+  const [refreshing, setRefreshing] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const { user } = useAuth();
   const navigation = useNavigation();
@@ -53,6 +56,7 @@ export default function HomeScreen() {
       setError("Erro ao carregar as consultas.");
     } finally {
       setLoading(false);
+      setRefreshing(false);
     }
   };
 
@@ -60,7 +64,12 @@ export default function HomeScreen() {
     fetchMinhasConsultas();
   }, []);
 
-  if (loading) {
+  const onRefresh = useCallback(() => {
+    setRefreshing(true);
+    fetchMinhasConsultas();
+  }, []);
+
+  if (loading && !refreshing) {
     return (
       <View style={styles.centered}>
         <ActivityIndicator size="large" color="#013EB0" />
@@ -78,8 +87,17 @@ export default function HomeScreen() {
   }
 
   return (
-    <ScrollView>
-      <View style={GlobalStyle.containerHome}>
+    <View style={GlobalStyle.containerHome}>
+      <ScrollView
+        refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={onRefresh}
+            colors={["#013EB0"]}
+            tintColor="#013EB0"
+          />
+        }
+      >
         <View style={styles.header}>
           <View style={styles.olaNome}>
             <Text style={styles.textOla}>Olá,</Text>
@@ -100,7 +118,9 @@ export default function HomeScreen() {
         >
           <View style={styles.bannerContent}>
             <View style={styles.bannerTextContainer}>
-              <Text style={styles.bannerTitle}>É prazer te ajudar, {user?.nome?.split(" ")[0]}!</Text>
+              <Text style={styles.bannerTitle}>
+                É prazer te ajudar, {user?.nome?.split(" ")[0]}!
+              </Text>
               <Text style={styles.bannerSubtitle}>
                 Confira seus agendamentos e muito mais!
               </Text>
@@ -113,8 +133,13 @@ export default function HomeScreen() {
           </View>
         </LinearGradient>
 
-        <View style={GlobalStyle.tituloPaginaArea}>
+        <View style={[GlobalStyle.tituloPaginaArea, styles.titleSchedule]}>
           <Text style={GlobalStyle.tituloPagina}>Consultas agendadas</Text>
+          <TouchableOpacity
+            onPress={() => navigation.navigate("ScheduleAppointment")}
+          >
+            <Icon name="more-vert" size={30} color="#000" />
+          </TouchableOpacity>
         </View>
 
         {appointments.length === 0 ? (
@@ -148,8 +173,8 @@ export default function HomeScreen() {
             appointment={selectedAppointment}
           />
         )}
-      </View>
-    </ScrollView>
+      </ScrollView>
+    </View>
   );
 }
 
@@ -158,7 +183,8 @@ const styles = StyleSheet.create({
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
-    width: "80%",
+    alignSelf: "center",
+    width: "90%",
   },
   olaNome: {
     flexDirection: "column",
@@ -176,6 +202,7 @@ const styles = StyleSheet.create({
     height: 200,
     marginVertical: 20,
     borderRadius: 20,
+    alignSelf: "center",
   },
   centered: {
     alignItems: "center",
@@ -197,21 +224,25 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 10,
   },
-
   bannerTitle: {
     fontSize: 16,
     fontWeight: "bold",
     color: "#000",
     marginBottom: 5,
   },
-
   bannerSubtitle: {
     fontSize: 14,
     color: "#4d4d4d",
   },
-
   bannerImage: {
     width: 200,
     height: 300,
+  },
+  titleSchedule: {
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
+    alignSelf: "center",
+    width: 360,
   },
 });

@@ -1,4 +1,3 @@
-// src/Components/common/ModalSeeAllRegistries.tsx
 import { Modal, View, Text, StyleSheet } from 'react-native';
 import ButtonStandard from './../buttonStandard'
 import { useNavigation } from '@react-navigation/native';
