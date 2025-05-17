@@ -4,16 +4,22 @@ import { Modal, View, Text, StyleSheet, TouchableOpacity } from "react-native";
 interface Props {
   visible: boolean;
   onClose: () => void;
+  message?: string; // ✅ nova prop opcional
 }
 
-export default function ErrorModal({ visible, onClose }: Props) {
+export default function ErrorModal({ visible, onClose, message }: Props) {
   return (
     <Modal transparent visible={visible} animationType="fade">
       <View style={styles.overlay}>
         <View style={styles.container}>
           <Text style={styles.title}>Erro</Text>
           <Text style={styles.message}>
-            Não foi possível agendar a consulta.
+            {"Não foi possível agendar a consulta."}
+            {message && (
+              <Text style={{ color: "red", fontWeight: "bold", marginTop: 10 }}>
+                {"\n" + message}
+              </Text>
+            )}
           </Text>
           <TouchableOpacity style={styles.button} onPress={onClose}>
             <Text style={styles.buttonText}>Fechar</Text>
