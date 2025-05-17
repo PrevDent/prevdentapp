@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useCallback } from "react";
 import {
   View,
   Text,
@@ -7,6 +7,7 @@ import {
   ScrollView,
   TouchableOpacity,
   ActivityIndicator,
+  RefreshControl,
 } from "react-native";
 import GlobalStyle from "../../Components/styles/Global";
 import AppointmentCard from "../../Components/common/appointmentsCard";
@@ -26,6 +27,7 @@ export default function HomeScreen() {
     useState<AppointmentInterface | null>(null);
   const [appointments, setAppointments] = useState<AppointmentInterface[]>([]);
   const [loading, setLoading] = useState(true);
+  const [refreshing, setRefreshing] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const { user } = useAuth();
   const navigation = useNavigation();
@@ -54,6 +56,7 @@ export default function HomeScreen() {
       setError("Erro ao carregar as consultas.");
     } finally {
       setLoading(false);
+      setRefreshing(false);
     }
   };
 
@@ -61,7 +64,12 @@ export default function HomeScreen() {
     fetchMinhasConsultas();
   }, []);
 
-  if (loading) {
+  const onRefresh = useCallback(() => {
+    setRefreshing(true);
+    fetchMinhasConsultas();
+  }, []);
+
+  if (loading && !refreshing) {
     return (
       <View style={styles.centered}>
         <ActivityIndicator size="large" color="#013EB0" />
@@ -80,7 +88,16 @@ export default function HomeScreen() {
 
   return (
     <View style={GlobalStyle.containerHome}>
-      <ScrollView>
+      <ScrollView
+        refreshControl={
+          <RefreshControl
+            refreshing={refreshing}
+            onRefresh={onRefresh}
+            colors={["#013EB0"]}
+            tintColor="#013EB0"
+          />
+        }
+      >
         <View style={styles.header}>
           <View style={styles.olaNome}>
             <Text style={styles.textOla}>Olá,</Text>
@@ -207,28 +224,25 @@ const styles = StyleSheet.create({
     flex: 1,
     paddingHorizontal: 10,
   },
-
   bannerTitle: {
     fontSize: 16,
     fontWeight: "bold",
     color: "#000",
     marginBottom: 5,
   },
-
   bannerSubtitle: {
     fontSize: 14,
     color: "#4d4d4d",
   },
-
   bannerImage: {
     width: 200,
     height: 300,
   },
-  titleSchedule:{
+  titleSchedule: {
     flexDirection: "row",
     justifyContent: "space-between",
     alignItems: "center",
     alignSelf: "center",
-    width: 360 
-  }
+    width: 360,
+  },
 });

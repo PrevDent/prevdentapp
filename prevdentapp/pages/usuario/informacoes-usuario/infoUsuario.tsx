@@ -1,4 +1,4 @@
-import { ActivityIndicator, ScrollView, StyleSheet, Text, View } from "react-native";
+import { ActivityIndicator, ScrollView, StyleSheet, Text, View, RefreshControl} from "react-native";
 import GlobalStyles from "../../../Components/styles/Global";
 import InfoCard from "../../../Components/common/infoCard";
 import Line from "../../../Components/common/line";
@@ -56,8 +56,16 @@ export default function InfoUsuarioScreen() {
   const [selectedRegistro, setSelectedRegistro] = useState<RegistroInterface | null>(null);
   const [showDetailsModal, setShowDetailsModal] = useState(false);
   const [showOptionsModal, setShowOptionsModal] = useState(false);
+  const [refreshing, setRefreshing] = useState(false);
+
   const navigation = useNavigation();
 
+
+  const onRefresh = async () => {
+    setRefreshing(true);
+    await fetchMeusRegistros();
+    setRefreshing(false);
+  };
 
 
   const fetchMeusRegistros = async () => {
@@ -96,7 +104,13 @@ export default function InfoUsuarioScreen() {
   return (
     <View style={GlobalStyles.containerHome}>
       <BackArrow />
-      <ScrollView>
+      <ScrollView 
+      refreshControl={
+        <RefreshControl 
+        refreshing={refreshing}
+        onRefresh={onRefresh} 
+        colors={["#013EB0"]} />
+      }>
         <View
           style={{ ...GlobalStyles.tituloPaginaArea, marginHorizontal: "8%" }}
         >

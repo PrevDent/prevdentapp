@@ -4,6 +4,7 @@ import {
   StyleSheet,
   ScrollView,
   ActivityIndicator,
+  RefreshControl
 } from "react-native";
 import BackArrow from "../../Components/common/backArrowComponent";
 import GlobalStyles from "../../Components/styles/Global";
@@ -26,7 +27,16 @@ export default function MyAppointment() {
   const [appointments, setAppointments] = useState<AppointmentInterface[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const [refreshing, setRefreshing] = useState(false);
+
   const navigation = useNavigation();
+
+
+  const onRefresh = async () => {
+    setRefreshing(true);
+    fetchMinhasConsultas();
+    setRefreshing(false);
+  };
 
   const openModal = (appointment: AppointmentInterface) => {
     setSelectedAppointment(appointment);
@@ -79,7 +89,14 @@ export default function MyAppointment() {
   return (
     <View style={GlobalStyles.containerHome}>
       <BackArrow />
-      <ScrollView>
+      <ScrollView 
+          refreshControl={
+          <RefreshControl 
+          refreshing={refreshing} 
+          onRefresh={onRefresh} 
+          colors={["#013EB0"]} />
+        }>
+          
         <View>
           <Text style={{ ...GlobalStyles.tituloPagina, textAlign: "center" }}>
             Bem-vindo aos {"\n"}seus agendamentos, {user?.nome}!
