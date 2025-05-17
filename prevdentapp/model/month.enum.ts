@@ -1,4 +1,3 @@
-// src/model/months.enum.ts
 export enum MonthsEnum {
     JAN = 1,
     FEB,

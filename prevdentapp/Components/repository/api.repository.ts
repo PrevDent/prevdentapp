@@ -2,7 +2,6 @@ import axios from 'axios';
 import { URL_PREVDENT_JAVA_API } from '../../constants';
 import { RegistroInterface } from '../../model/registro.interface';
 import { ScheduleAppointmentInterface } from '../../model/appointment.interface';
-import areasData from '../data/areas-atuacao.json';
 
 export const apiRepository = {
 

@@ -1,10 +1,9 @@
-import React from "react";
 import { Modal, View, Text, StyleSheet, TouchableOpacity } from "react-native";
 
 interface Props {
   visible: boolean;
   onClose: () => void;
-  message?: string; // ✅ nova prop opcional
+  message?: string;
 }
 
 export default function ErrorModal({ visible, onClose, message }: Props) {
