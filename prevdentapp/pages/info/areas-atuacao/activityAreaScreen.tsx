@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState, useEffect } from "react";
 import {
   View,
   Text,
@@ -11,49 +11,28 @@ import GlobalStyles from "../../../Components/styles/Global";
 import BackArrow from "../../../Components/common/backArrowComponent";
 import ActivityCard from "../../../Components/common/activityAreaCard";
 import { useNavigation } from "@react-navigation/native";
-import { apiController } from "../../../Components/controller/api.controller"; 
 import { ActivityDataInterface } from "../../../model/activityData.interface";
+import areasData from "../../../Components/data/areas-atuacao.json"; 
+
 
 function ActivityAreaScreen() {
   const navigation = useNavigation();
   const [activityData, setActivityData] = useState<ActivityDataInterface[]>([]);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<string | null>(null);
-
-  const handleNavigate = (area: ActivityDataInterface) => {
-    navigation.navigate("AreaDetailsScreen", area); 
-  };
-
-  
-  const fetchAreasAtuacao = async () => {
-    try {
-      const areas = await apiController.fetchAreasAtuacao(); 
-      setActivityData(areas); 
-    } catch (err) {
-      setError("Erro ao carregar as áreas de atuação."); 
-    } finally {
-      setLoading(false); 
-    }
-  };
 
   useEffect(() => {
-    fetchAreasAtuacao(); 
+    setActivityData(areasData);
+    setLoading(false);
   }, []);
 
-  
+  const handleNavigate = (area: ActivityDataInterface) => {
+    navigation.navigate("AreaDetailsScreen", area);
+  };
+
   if (loading) {
     return (
-      <ActivityIndicator
-        size="large"
-        color="#0000ff"
-        style={{ marginTop: 20 }}
-      />
+      <ActivityIndicator size="large" color="#0000ff" style={{ marginTop: 20 }} />
     );
-  }
-
-  
-  if (error) {
-    return <Text style={{ color: "red" }}>{error}</Text>;
   }
 
   return (
@@ -65,13 +44,13 @@ function ActivityAreaScreen() {
             <Text style={GlobalStyles.tituloPagina}>Informações</Text>
           </View>
           {activityData.map((activity, index) => (
-            <TouchableOpacity key={index}>
+            <TouchableOpacity key={index} onPress={() => handleNavigate(activity)}>
               <ActivityCard
                 icon={activity.icon}
                 title={activity.title}
                 description={activity.description}
                 iconBackgroundColor={activity.iconBackgroundColor}
-                onPress={() => handleNavigate(activity)} 
+                onPress={() => handleNavigate(activity)}   
               />
             </TouchableOpacity>
           ))}
